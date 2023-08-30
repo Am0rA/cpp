@@ -60,7 +60,7 @@ bool Contact::getInput(std::string &buf, int type, std::string &message)
 	return (true);
 }
 
-bool	Contact::isCompare(const std::string &str, int (*compare)(int))
+bool	isCompare(const std::string &str, int (*compare)(int))
 {
 	for (size_t i = 0; i < str.size(); i++)
 	{

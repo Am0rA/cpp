@@ -71,7 +71,7 @@ int	PhoneBook::FindContact()
 		index = std::atoi(line.c_str());
 		if (line.empty())
 			std::cout << RED << "Empty input is not accepted\n" << DEFCOLOR;
-		else if (Contact::isCompare(line, std::isdigit) == false)
+		else if (isCompare(line, std::isdigit) == false)
 			std::cout << RED << "Only numerical input is accepted\n"<< DEFCOLOR;
 		else if (index > this->_ContactNum || index < 1)
 			std::cout << RED << "Index is out of range\n" << DEFCOLOR;

@@ -28,7 +28,6 @@ class Contact
 		bool setNickName();
 		bool setPhoneNumber();
 		bool setDarkestSecret();
-		static bool isCompare(const std::string &str, int (*compare)(int));
 	private:
 		std::string _FirstName;
 		std::string _LastName;
@@ -38,4 +37,5 @@ class Contact
 		bool getInput(std::string &buf, int type, std::string &message);
 };
 
+static bool isCompare(const std::string &str, int (*compare)(int));
 #endif
