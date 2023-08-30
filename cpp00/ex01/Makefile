@@ -4,7 +4,7 @@
 # ╭────────────────────────────────────╮
 # │              CXX part              │
 # ╰────────────────────────────────────╯
-CPP 		= g++
+CPP 		= c++
 CPPFLAGS	= -Wall -Wextra -Werror -I. -std=c++98
 NAME		= PhoneBook
 COMPILE		= $(CPP) $(CPPFLAGS)

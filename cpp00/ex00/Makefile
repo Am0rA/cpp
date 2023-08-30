@@ -4,7 +4,7 @@
 # ╭────────────────────────────────────╮
 # │              CXX part              │
 # ╰────────────────────────────────────╯
-CPP 		= clang++
+CPP 		= c++
 CPPFLAGS	= -Wall -Wextra -Werror -std=c++98
 NAME		= megaphone
 COMPILE		= $(CPP) $(CPPFLAGS)

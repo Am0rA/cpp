@@ -8,7 +8,7 @@ void	writeToUpperCase(char *s)
 	while (s[++i])
 	{
 		if (isalpha(s[i]))
-			toupper(s[i]);
+			s[i] = toupper(s[i]);
 		std::cout << s[i];
 	}
 }
