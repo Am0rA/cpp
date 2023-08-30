@@ -11,10 +11,8 @@ class PhoneBook
 		int			AddContact();
 		int			FindContact();
 		int			SearchContact();
-		bool		isCompare(std::string str, int (*compare)(int));
-		std::string	GetColumn(std::string str);
-	
 	private:
+		std::string	GetColumn(std::string str);
 		Contact	_ContactList[8];
 		int		_Index;
 		int		_ContactNum;

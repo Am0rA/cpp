@@ -8,29 +8,21 @@ int	main(void)
 
 	while (true)
 	{
-		if (!std::cin.eof())
+		std::cout << GREEN << "Enter a command " << L_BLUE << "(ADD, SEARCH, EXIT)" << DEFCOLOR << "\n";
+		std::cout << BLUE << "Input: " << DEFCOLOR;
+		if (!std::getline(std::cin, line) || line == "EXIT")
 		{
-			std::cout << GREEN << "Enter a command " << L_BLUE << "(ADD, SEARCH, EXIT)" << DEFCOLOR << std::endl;
-			std::cout << BLUE << "Input: " << DEFCOLOR;
-			std::getline(std::cin, line);
-		}
-		if (line == "EXIT" || std::cin.eof())
-		{
-			std::cout << std::endl << GREEN << "Book is put on the shelf." << DEFCOLOR << std::endl;
+			if (std::cin.eof())
+				std::cout <<  "EOF received\n";
+			std::cout << GREEN << "Book is put on the shelf.\n" << DEFCOLOR;
 			break ;
 		}
-		else if (line == "ADD")
-		{
-			if (phoneBook.AddContact() == 1)
+		else if (line == "ADD" && phoneBook.AddContact() == 1)
+			return (0);
+		else if (line == "SEARCH" && phoneBook.SearchContact() == 1)
 				return (0);
-		}
-		else if (line == "SEARCH")
-		{
-			if (phoneBook.SearchContact() == 1)
-				return (0);
-		}
 		else
-			std::cout << RED << "Invalid input, Please enter ADD, SEARCH or EXIT" << DEFCOLOR << std::endl;
+			std::cout << RED << "Invalid input, Please enter ADD, SEARCH or EXIT" << DEFCOLOR << "\n";
 	}
 	return (0);
 }

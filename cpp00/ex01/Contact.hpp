@@ -18,7 +18,6 @@ class Contact
 		Contact(std::string FirstName, std::string LastName, std::string NickName, std::string PhoneNumber, std::string DarkestSecret);
 		~Contact();
 		Contact &	operator=(const Contact &assign);
-		bool		isCompare(std::string str, int (*compare)(int));
 		std::string getFirstName() const;
 		std::string getLastName() const;
 		std::string getNickName() const;
@@ -29,6 +28,7 @@ class Contact
 		bool setNickName();
 		bool setPhoneNumber();
 		bool setDarkestSecret();
+		static bool isCompare(const std::string &str, int (*compare)(int));
 	private:
 		std::string _FirstName;
 		std::string _LastName;

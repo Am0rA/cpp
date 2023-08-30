@@ -44,23 +44,23 @@ bool Contact::getInput(std::string &buf, int type, std::string &message)
 		{
 			if (std::cin.eof())
 			{
-				std::cout << "EOF received" << std::endl;
+				std::cout << "EOF received" << "\n";
 				return (false);
 			}
 		}
 		if (buf.empty())
-			std::cout << RED << "Empty input is not accepted" << DEFCOLOR << std::endl;
+			std::cout << RED << "Empty input is not accepted" << DEFCOLOR << "\n";
 		else if (type == 0 && isCompare(buf, isalpha) == false)
-			std::cout << RED << "Non alpha input is not accepted" << DEFCOLOR << std::endl;
+			std::cout << RED << "Non alpha input is not accepted" << DEFCOLOR << "\n";
 		else if (type == 1 && isCompare(buf, isdigit) == false)
-			std::cout << RED << "Non digit input is not accepted" << DEFCOLOR << std::endl;
+			std::cout << RED << "Non digit input is not accepted" << DEFCOLOR << "\n";
 		else
 			break ;
 	}
 	return (true);
 }
 
-bool	Contact::isCompare(std::string str, int (*compare)(int))
+bool	Contact::isCompare(const std::string &str, int (*compare)(int))
 {
 	for (size_t i = 0; i < str.size(); i++)
 	{
