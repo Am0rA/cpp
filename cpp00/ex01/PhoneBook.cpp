@@ -41,7 +41,7 @@ int	PhoneBook::SearchContact()
 	return (this->FindContact());
 }
 
-std::string	PhoneBook::GetColumn(std::string str)
+std::string	PhoneBook::GetColumn(const std::string &str)
 {
 	std::string	column;
 

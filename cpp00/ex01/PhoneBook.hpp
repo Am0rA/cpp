@@ -12,7 +12,7 @@ class PhoneBook
 		int			FindContact();
 		int			SearchContact();
 	private:
-		std::string	GetColumn(std::string str);
+		std::string	GetColumn(const std::string &str);
 		Contact	_ContactList[8];
 		int		_Index;
 		int		_ContactNum;

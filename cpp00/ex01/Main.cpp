@@ -8,7 +8,7 @@ int	main(void)
 
 	while (true)
 	{
-		std::cout << GREEN << "Enter a command " << L_BLUE << "(ADD, SEARCH, EXIT)" << DEFCOLOR << "\n";
+		std::cout << GREEN << "Enter a command " << L_BLUE << "(ADD, SEARCH, EXIT)\n" << DEFCOLOR;
 		std::cout << BLUE << "Input: " << DEFCOLOR;
 		if (!std::getline(std::cin, line) || line == "EXIT")
 		{
@@ -21,8 +21,10 @@ int	main(void)
 			return (0);
 		else if (line == "SEARCH" && phoneBook.SearchContact() == 1)
 				return (0);
+		else if (line.empty())
+			std::cout << RED "Empty input is not accepted\n" DEFCOLOR;
 		else
-			std::cout << RED << "Invalid input, Please enter ADD, SEARCH or EXIT" << DEFCOLOR << "\n";
+			std::cout << RED "Invalid input, Please enter ADD, SEARCH or EXIT\n" DEFCOLOR;
 	}
 	return (0);
 }
