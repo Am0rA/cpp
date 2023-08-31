@@ -5,8 +5,8 @@ void	randomChump(std::string name)
 	Zombie newZombie;
 
 	if (name.empty())
-		newZombie.SetRandomName();
+		newZombie.setRandomName();
 	else
-		newZombie.SetName(name);
+		newZombie.setName(name);
 	newZombie.announce();
 }

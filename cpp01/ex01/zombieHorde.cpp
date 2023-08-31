@@ -7,6 +7,6 @@ Zombie	*zombieHorde(int N, std::string name)
 		return (Horde);
 	Horde = new Zombie[N];
 	for (int i = 0; i < N; i++)
-		Horde[i].SetName(name);
+		Horde[i].setName(name);
 	return (Horde);
 }

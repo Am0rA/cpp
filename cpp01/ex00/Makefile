@@ -4,7 +4,7 @@
 # ╭────────────────────────────────────╮
 # │              CXX part              │
 # ╰────────────────────────────────────╯
-CPP 		= clang++
+CPP 		= c++
 CPPFLAGS	= -Wall -Wextra -Werror -I. -std=c++98
 NAME		= Zombie
 COMPILE		= $(CPP) $(CPPFLAGS)

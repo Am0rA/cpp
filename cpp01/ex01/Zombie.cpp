@@ -20,12 +20,12 @@ void	Zombie::announce(void)
 	std::cout << BOLD << GREEN << this->_name << T_RESET << YELLOW << ": BraiiiiiiinnnzzzZ..." << C_RESET << T_RESET << std::endl;
 }
 
-void	Zombie::SetName(std::string name)
+void	Zombie::setName(std::string name)
 {
 	this->_name = name;
 }
 
-void	Zombie::SetRandomName(void)
+void	Zombie::setRandomName(void)
 {
 	const char	*names[] =
 	{
@@ -34,5 +34,5 @@ void	Zombie::SetRandomName(void)
 	};
 	std::srand(static_cast<unsigned int>(std::time(NULL)));
 	int	randomIndex = std::rand() % 10;
-	this->SetName(names[randomIndex]);
+	this->setName(names[randomIndex]);
 }

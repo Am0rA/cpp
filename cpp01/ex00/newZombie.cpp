@@ -3,6 +3,6 @@
 Zombie	*newZombie(std::string name)
 {
 	Zombie	*toDelete = new (Zombie);
-	toDelete->SetName(name);
+	toDelete->setName(name);
 	return (toDelete);
 }
