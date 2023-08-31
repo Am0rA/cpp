@@ -1,6 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   Contact.cpp                                        :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: itopchu <itopchu@student.codam.nl>           +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2023/08/31 12:53:58 by itopchu       #+#    #+#                 */
+/*   Updated: 2023/08/31 12:53:58 by itopchu       ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Contact.hpp"
 
-// Constructors
 Contact::Contact()
 {
 	_FirstName = "NAME";
@@ -29,7 +40,6 @@ Contact::Contact(std::string FirstName, std::string LastName, std::string NickNa
 }
 
 
-// Destructor
 Contact::~Contact()
 {
 	
@@ -70,7 +80,6 @@ bool	isCompare(const std::string &str, int (*compare)(int))
 	return (true);
 }
 
-// Operators
 Contact & Contact::operator=(const Contact &assign)
 {
 	_FirstName = assign.getFirstName();
@@ -82,7 +91,6 @@ Contact & Contact::operator=(const Contact &assign)
 }
 
 
-// Getters / Setters
 std::string Contact::getFirstName() const
 {
 	return _FirstName;

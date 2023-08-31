@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   Fixed.hpp                                          :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: itopchu <itopchu@student.codam.nl>           +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2023/08/31 13:06:57 by itopchu       #+#    #+#                 */
+/*   Updated: 2023/08/31 13:06:57 by itopchu       ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef FIXED_HPP
 # define FIXED_HPP
 
@@ -8,7 +20,6 @@
 class Fixed
 {
 	public:
-		// Constructors
 		Fixed();
 		Fixed(const Fixed &copy);
 		Fixed &operator=(const Fixed &assign);
@@ -25,10 +36,8 @@ class Fixed
 		Fixed	operator-(const Fixed &other) const;
 		Fixed	operator*(const Fixed &other) const;
 		Fixed	operator/(const Fixed &other) const;
-		// Prefix
 		Fixed	&operator++(void);
 		Fixed	&operator--(void);
-		// Postfix
 		Fixed	operator++(int);
 		Fixed	operator--(int);
     	static Fixed& min(Fixed &a, Fixed &b);

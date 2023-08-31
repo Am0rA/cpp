@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   Fixed.hpp                                          :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: itopchu <itopchu@student.codam.nl>           +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2023/08/31 13:06:34 by itopchu       #+#    #+#                 */
+/*   Updated: 2023/08/31 13:06:34 by itopchu       ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef FIXED_HPP
 # define FIXED_HPP
 
@@ -8,7 +20,6 @@
 class Fixed
 {
 	public:
-		// Constructors
 		Fixed();
 		Fixed(const Fixed &copy);
 		Fixed &operator=(const Fixed &assign);

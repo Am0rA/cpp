@@ -1,6 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   ClapTrap.cpp                                       :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: itopchu <itopchu@student.codam.nl>           +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2023/08/31 13:07:11 by itopchu       #+#    #+#                 */
+/*   Updated: 2023/08/31 13:07:11 by itopchu       ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ClapTrap.hpp"
 
-// Constructors
 ClapTrap::ClapTrap()
 {
 	_name = "default";
@@ -29,14 +40,12 @@ ClapTrap::ClapTrap(std::string _name, unsigned int p_hit, unsigned int p_energy,
 }
 
 
-// Destructor
 ClapTrap::~ClapTrap()
 {
 	std::cout << PURP "Destructor called of ClapTrap" DEFCOLOR << std::endl;
 }
 
 
-// Operators
 ClapTrap & ClapTrap::operator=(const ClapTrap &assign)
 {
 	_name = assign.getName();
@@ -47,7 +56,6 @@ ClapTrap & ClapTrap::operator=(const ClapTrap &assign)
 }
 
 
-// Getters / Setters
 std::string ClapTrap::getName() const
 {
 	return _name;

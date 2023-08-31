@@ -1,15 +1,25 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   Zombie.cpp                                         :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: itopchu <itopchu@student.codam.nl>           +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2023/08/31 13:00:48 by itopchu       #+#    #+#                 */
+/*   Updated: 2023/08/31 13:00:48 by itopchu       ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Zombie.hpp"
 #include <cstdlib>
 #include <vector>
 #include <ctime>
 
-// Constructors
 Zombie::Zombie()
 {
 
 }
 
-// Destructor
 Zombie::~Zombie()
 {
 	std::cout << BLUE << this->_name << " is destructed" << C_RESET << std::endl;

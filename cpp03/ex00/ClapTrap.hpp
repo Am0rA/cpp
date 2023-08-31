@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   ClapTrap.hpp                                       :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: itopchu <itopchu@student.codam.nl>           +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2023/08/31 13:07:16 by itopchu       #+#    #+#                 */
+/*   Updated: 2023/08/31 13:07:16 by itopchu       ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CLAPTRAP_HPP
 # define CLAPTRAP_HPP
 
@@ -15,18 +27,14 @@
 class ClapTrap
 {
 	public:
-		// Constructors
 		ClapTrap();
 		ClapTrap(const ClapTrap &copy);
 		ClapTrap(std::string _name, unsigned int p_hit, unsigned int p_energy, unsigned int p_attack);
 		
-		// Destructor
 		~ClapTrap();
 		
-		// Operators
 		ClapTrap & operator=(const ClapTrap &assign);
 		
-		// Getters / Setters
 		std::string getName() const;
 		void set_name(std::string _name);
 		unsigned int getP_hit() const;

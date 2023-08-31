@@ -1,9 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   Contact.hpp                                        :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: itopchu <itopchu@student.codam.nl>           +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2023/08/31 13:01:43 by itopchu       #+#    #+#                 */
+/*   Updated: 2023/08/31 13:01:43 by itopchu       ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CONTACT_HPP
 #define CONTACT_HPP
 
 # include <sstream>
 # include <iostream>
-# include <algorithm>
 # define RED "\e[1;31m"
 # define BLUE "\e[1;34m"
 # define GREEN "\e[1;32m"
