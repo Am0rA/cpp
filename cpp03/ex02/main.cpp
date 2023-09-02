@@ -24,7 +24,6 @@ int main()
     scavTrap.attack("Victim");
     victim.takeDamage(scavTrap.getP_attack());
 
-	ScavTrap scaviTrap = scavTrap;
 	invader.attack(scavTrap.getName());
 	scavTrap.takeDamage(invader.getP_attack());
     scavTrap.guardGate();

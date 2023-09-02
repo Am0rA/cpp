@@ -18,33 +18,31 @@ ClapTrap::ClapTrap()
 	_p_hit = 10;
 	_p_energy = 10;
 	_p_attack = 0;
-	std::cout << YELLOW "Default Constructor called of ClapTrap" DEFCOLOR << std::endl;
+	std::cout << YELLOW "Default Constructor of ClapTrap called" DEFCOLOR << std::endl;
 }
 
 ClapTrap::ClapTrap(const ClapTrap &copy)
+    : _name(copy.getName()),
+      _p_hit(copy.getP_hit()),
+      _p_energy(copy.getP_energy()),
+      _p_attack(copy.getP_attack())
 {
-	_name = copy.getName();
-	_p_hit = copy.getP_hit();
-	_p_energy = copy.getP_energy();
-	_p_attack = copy.getP_attack();
-	std::cout << YELLOW "Copy Constructor called of ClapTrap" DEFCOLOR << std::endl;
+    std::cout << YELLOW "Copy Constructor of ClapTrap called" DEFCOLOR << std::endl;
 }
-
 ClapTrap::ClapTrap(std::string _name, unsigned int p_hit, unsigned int p_energy, unsigned int p_attack)
 {
 	this->_name = _name;
 	_p_hit = p_hit;
 	_p_energy = p_energy;
 	_p_attack = p_attack;
-	std::cout << YELLOW "Fields Constructor called of ClapTrap" DEFCOLOR << std::endl;
+	std::cout << YELLOW "Fields Constructor of ClapTrap called" DEFCOLOR << std::endl;
 }
 
 
 ClapTrap::~ClapTrap()
 {
-	std::cout << PURP "Destructor called of ClapTrap" DEFCOLOR << std::endl;
+	std::cout << PURP "Destructor of ClapTrap called" DEFCOLOR << std::endl;
 }
-
 
 ClapTrap & ClapTrap::operator=(const ClapTrap &assign)
 {
@@ -54,7 +52,6 @@ ClapTrap & ClapTrap::operator=(const ClapTrap &assign)
 	_p_attack = assign.getP_attack();
 	return *this;
 }
-
 
 std::string ClapTrap::getName() const
 {
@@ -122,11 +119,13 @@ void ClapTrap::attack(const std::string& target)
 void ClapTrap::takeDamage(unsigned int amount)
 {
 	unsigned int newHitPoint;
+	unsigned int tmp;
 
-	if (this->getP_hit() - amount < 0)
+	tmp = this->getP_hit() - amount;
+	if (tmp > this->getP_hit())
 		newHitPoint = 0;
 	else
-		newHitPoint = this->getP_hit() - amount;
+		newHitPoint = tmp;
 	std::cout << BLUE << this->getName() << DEFCOLOR << ": Ouch!";
 	std::cout << " I received " << RED << amount << DEFCOLOR;
 	std::cout << " damage!" << std::endl;
