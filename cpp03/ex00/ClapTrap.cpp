@@ -39,12 +39,10 @@ ClapTrap::ClapTrap(std::string _name, unsigned int p_hit, unsigned int p_energy,
 	std::cout << YELLOW "Fields Constructor of ClapTrap called" DEFCOLOR << std::endl;
 }
 
-
 ClapTrap::~ClapTrap()
 {
 	std::cout << PURP "Destructor of ClapTrap called" DEFCOLOR << std::endl;
 }
-
 
 ClapTrap & ClapTrap::operator=(const ClapTrap &assign)
 {

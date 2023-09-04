@@ -41,7 +41,6 @@ void	Zombie::setRandomName(void)
         "Alice", "Bob", "Charlie", "David", "Ella",
         "Frank", "Grace", "Henry", "Isabella", "Jack"	
 	};
-	std::srand(static_cast<unsigned int>(std::time(NULL)));
 	int	randomIndex = std::rand() % 10;
 	this->setName(names[randomIndex]);
 }

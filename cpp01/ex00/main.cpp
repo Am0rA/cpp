@@ -16,6 +16,7 @@ int	main(void)
 {
 	Zombie	*Zombie;
 
+	std::srand(static_cast<unsigned int>(std::time(NULL)));
 	Zombie = newZombie("Choko");
 	Zombie->announce();
 	randomChump("Chump");

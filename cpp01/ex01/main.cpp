@@ -17,6 +17,7 @@ int	main(void)
 	Zombie	*Horde;
 	int		size = 50;
 
+	std::srand(static_cast<unsigned int>(std::time(NULL)));
 	Horde = zombieHorde(size, "Golden");
 	for (int i = 0; i < size; i++)
 	{
