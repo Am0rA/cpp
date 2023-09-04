@@ -18,7 +18,7 @@ RM			= rm -rf
 SRCS		= main.cpp \
 			  HumanA.cpp \
 			  HumanB.cpp \
-			  Weapon.cpp \
+			  Weapon.cpp
 # ╭────────────────────────────────────╮
 # │               OBJECTS              │
 # ╰────────────────────────────────────╯
