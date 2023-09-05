@@ -34,13 +34,13 @@ class ClapTrap
 		ClapTrap & operator=(const ClapTrap &assign);
 		
 		std::string getName() const;
-		void set_name(std::string _name);
-		unsigned int getP_hit() const;
-		void setP_hit(unsigned int p_hit);
-		unsigned int getP_energy() const;
-		void setP_energy(unsigned int p_energy);
-		unsigned int getP_attack() const;
-		void setP_attack(unsigned int p_attack);
+		void setName(std::string _name);
+		unsigned int getPhit() const;
+		void setPhit(unsigned int p_hit);
+		unsigned int getPenergy() const;
+		void setPenergy(unsigned int p_energy);
+		unsigned int getPattack() const;
+		void setPattack(unsigned int p_attack);
 		void attack(const std::string& target);
 		void takeDamage(unsigned int amount);
 		void beRepaired(unsigned int amount);

@@ -1,28 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   main.cpp                                           :+:    :+:            */
+/*   FragTrap.hpp                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: itopchu <itopchu@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2023/08/31 13:07:22 by itopchu       #+#    #+#                 */
-/*   Updated: 2023/08/31 13:07:22 by itopchu       ########   odam.nl         */
+/*   Created: 2023/09/04 23:40:26 by itopchu       #+#    #+#                 */
+/*   Updated: 2023/09/04 23:40:26 by itopchu       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef FRAGTRAP_HPP
+# define FRAGTRAP_HPP
+
 #include "ClapTrap.hpp"
 
-int	main(void)
+class FragTrap : public ClapTrap
 {
-	ClapTrap	victim("Victim", 100, 2, 9);
-	ClapTrap	invader("Invader", 100, 40, 8);
-	invader.attack("Victim");
-    victim.takeDamage(invader.getPattack());
-    invader.attack("Victim");
-    victim.takeDamage(invader.getPattack());
-    victim.beRepaired(35);
-    victim.beRepaired(80);
-    victim.takeDamage(invader.getPattack());
-    victim.beRepaired(33);
-	return (0);
-}
+	public:
+		FragTrap();
+		FragTrap(const std::string &name);
+		FragTrap(const FragTrap &copy);
+		~FragTrap();
+		FragTrap & operator=(const FragTrap &assign);
+		void	highFivesGuys(void);
+	private:
+};
+
+#endif

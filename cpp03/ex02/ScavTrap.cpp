@@ -12,6 +12,11 @@
 
 #include "ScavTrap.hpp"
 
+ScavTrap::ScavTrap() : ClapTrap("Scav", 100, 50, 20)
+{
+    std::cout << YELLOW "Default ScavTrap Constructor called" DEFCOLOR << "\n";
+}
+
 ScavTrap::ScavTrap(std::string name) : ClapTrap(name, 100, 50, 20)
 {
     std::cout << YELLOW "ScavTrap Constructor called" DEFCOLOR << "\n";
@@ -28,17 +33,17 @@ void ScavTrap::guardGate()
 }
 
 ScavTrap::ScavTrap(const ScavTrap &copy)
-    : ClapTrap(copy.getName(), copy.getP_hit(), copy.getP_energy(), copy.getP_attack())
+    : ClapTrap(copy.getName(), copy.getPhit(), copy.getPenergy(), copy.getPattack())
 {
     std::cout << YELLOW "ScavTrap Copy Constructor called" DEFCOLOR << std::endl;
 }
 
 ScavTrap & ScavTrap::operator=(const ScavTrap &assign)
 {
-	this->set_name(assign.getName());
-	this->setP_hit(assign.getP_hit());
-	this->setP_attack(assign.getP_energy());
-	this->setP_energy(assign.getP_attack());
+	this->setName(assign.getName());
+	this->setPhit(assign.getPhit());
+	this->setPattack(assign.getPenergy());
+	this->setPenergy(assign.getPattack());
 	return *this;
 }
 

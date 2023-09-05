@@ -18,22 +18,22 @@ int main()
     ClapTrap invader("Invader", 100, 40, 8);
 
     invader.attack("Victim");
-    victim.takeDamage(invader.getP_attack());
+    victim.takeDamage(invader.getPattack());
 
     ScavTrap scavTrap("Scavvy");
     scavTrap.attack("Victim");
-    victim.takeDamage(scavTrap.getP_attack());
+    victim.takeDamage(scavTrap.getPattack());
 
 	ScavTrap scaviTrap = scavTrap;
 	invader.attack(scavTrap.getName());
-	scavTrap.takeDamage(invader.getP_attack());
+	scavTrap.takeDamage(invader.getPattack());
     scavTrap.guardGate();
 
     victim.beRepaired(35);
     scavTrap.beRepaired(80);
 
     invader.attack("Victim");
-    victim.takeDamage(invader.getP_attack());
+    victim.takeDamage(invader.getPattack());
 
     victim.beRepaired(33);
 
