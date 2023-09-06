@@ -45,7 +45,7 @@ Contact::~Contact()
 	
 }
 
-bool Contact::getInput(std::string &buf, int type, std::string &message)
+int Contact::getInput(std::string &buf, int type, std::string &message)
 {
 	while (1)
 	{
@@ -55,7 +55,7 @@ bool Contact::getInput(std::string &buf, int type, std::string &message)
 			if (std::cin.eof())
 			{
 				std::cout << "EOF received\n";
-				return (false);
+				return (0);
 			}
 		}
 		if (buf.empty())
@@ -67,7 +67,7 @@ bool Contact::getInput(std::string &buf, int type, std::string &message)
 		else
 			break ;
 	}
-	return (true);
+	return (1);
 }
 
 bool	isCompare(const std::string &str, int (*compare)(int))

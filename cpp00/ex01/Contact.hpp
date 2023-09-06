@@ -45,7 +45,7 @@ class Contact
 		std::string _NickName;
 		std::string _PhoneNumber;
 		std::string _DarkestSecret;
-		bool getInput(std::string &buf, int type, std::string &message);
+		int getInput(std::string &buf, int type, std::string &message);
 };
 
 static bool isCompare(const std::string &str, int (*compare)(int));

@@ -24,18 +24,24 @@ int	main(void)
 		if (!std::getline(std::cin, line) || line == "EXIT")
 		{
 			if (std::cin.eof())
-				std::cout <<  "EOF received\n";
-			std::cout << GREEN << "Book is put on the shelf.\n" << DEFCOLOR;
+				std::cout << "EOF received\n";
 			break ;
 		}
-		else if (line == "ADD" && phoneBook.AddContact() == 1)
-			return (0);
-		else if (line == "SEARCH" && phoneBook.SearchContact() == 1)
+		else if (line == "ADD")
+		{
+			if (phoneBook.AddContact() == 1)
 				return (0);
+		}
+		else if (line == "SEARCH")
+		{
+			if (phoneBook.SearchContact() == 1)
+				return (0);
+		}
 		else if (line.empty())
 			std::cout << RED "Empty input is not accepted\n" DEFCOLOR;
 		else
 			std::cout << RED "Invalid input, Please enter ADD, SEARCH or EXIT\n" DEFCOLOR;
 	}
+	std::cout << GREEN << "Book is put on the shelf.\n" << DEFCOLOR;
 	return (0);
 }
