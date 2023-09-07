@@ -11,17 +11,14 @@
 /* ************************************************************************** */
 
 #include <iostream>
-#include <string>
-#include <cctype>
 
-void	writeToUpperCase(char *s)
+void	toUpperCase(char *s)
 {
 	int	i = -1;
 	while (s[++i])
 	{
 		if (isalpha(s[i]))
 			s[i] = toupper(s[i]);
-		std::cout << s[i];
 	}
 }
 
@@ -33,9 +30,8 @@ int	main(int ac, char **av)
 	{
 		for(int i = 1; i < ac; i++)
 		{
-			writeToUpperCase(av[i]);
-			if (i != ac - 1)
-				std::cout << " ";
+			toUpperCase(av[i]);
+			std::cout << av[i];
 		}
 		std::cout << "\n";
 	}
