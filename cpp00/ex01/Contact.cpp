@@ -50,7 +50,7 @@ int Contact::getInput(std::string &buf, int type, std::string &message)
 	while (1)
 	{
 		std::cout << message;
-		if (!std::getline(std::cin, buf))
+		if (!std::getline(std::cin >> std::ws, buf))
 		{
 			if (std::cin.eof())
 			{

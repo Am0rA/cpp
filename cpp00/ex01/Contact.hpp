@@ -15,6 +15,7 @@
 
 # include <sstream>
 # include <iostream>
+# include <cstdlib>
 # define RED "\e[1;31m"
 # define BLUE "\e[1;34m"
 # define GREEN "\e[1;32m"
@@ -48,5 +49,5 @@ class Contact
 		int getInput(std::string &buf, int type, std::string &message);
 };
 
-static bool isCompare(const std::string &str, int (*compare)(int));
+bool isCompare(const std::string &str, int (*compare)(int));
 #endif
