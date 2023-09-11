@@ -6,6 +6,7 @@
 # ╰────────────────────────────────────╯
 CPP 		= c++
 CPPFLAGS	= -Wall -Wextra -Werror -I. -std=c++98
+CPPFLAGS	= -MMD -MP
 NAME		= PhoneBook
 COMPILE		= $(CPP) $(CPPFLAGS)
 # ╭────────────────────────────────────╮
@@ -23,10 +24,10 @@ SRCS		= Contact.cpp \
 # ╰────────────────────────────────────╯
 OBJS		= $(SRCS:.cpp=.o)
 # ╭────────────────────────────────────╮
-# │                DEPS                │
+# │            DEPENDENCIES            │
 # ╰────────────────────────────────────╯
-DEPS		= Contact.hpp \
-			  PhoneBook.hpp
+DEPS       = $(SRCS:.cpp=.d)
+-include $(DEPS)
 # ╭────────────────────────────────────╮
 # │              COMMANDS              │
 # ╰────────────────────────────────────╯
@@ -35,15 +36,16 @@ all: $(NAME)
 $(NAME): $(OBJS)
 	$(COMPILE) $(OBJS) -o $(NAME)
 
-%.o: %.cpp $(DEPS)
+%.o: %.cpp
 	$(COMPILE) -c $< -o $@
 
 clean:
-	$(RM) $(OBJS)
+	$(RM) $(OBJS) $(DEPS)
 
 fclean: clean
 	$(RM) $(NAME)
 
 re: fclean all
+
 
 .PHONY: clean all fclean re

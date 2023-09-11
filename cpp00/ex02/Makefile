@@ -6,6 +6,7 @@
 # ╰────────────────────────────────────╯
 CPP 		= c++
 CPPFLAGS	= -Wall -Wextra -Werror -I. -std=c++98
+CPPFLAGS	= -MMD -MP
 NAME		= Account
 COMPILE		= $(CPP) $(CPPFLAGS)
 # ╭────────────────────────────────────╮
@@ -22,6 +23,11 @@ SRCS		= Account.cpp \
 # ╰────────────────────────────────────╯
 OBJS		= $(SRCS:.cpp=.o)
 # ╭────────────────────────────────────╮
+# │            DEPENDENCIES            │
+# ╰────────────────────────────────────╯
+DEPS       = $(SRCS:.cpp=.d)
+-include $(DEPS)
+# ╭────────────────────────────────────╮
 # │              COMMANDS              │
 # ╰────────────────────────────────────╯
 all: $(NAME)
@@ -33,7 +39,7 @@ $(NAME): $(OBJS)
 	$(COMPILE) -c $< -o $@
 
 clean:
-	$(RM) $(OBJS)
+	$(RM) $(OBJS) $(DEPS)
 
 fclean: clean
 	$(RM) $(NAME)

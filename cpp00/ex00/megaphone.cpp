@@ -11,29 +11,22 @@
 /* ************************************************************************** */
 
 #include <iostream>
+#include <cctype>
 
-void	toUpperCase(char *s)
+int main(int argc, char** argv)
 {
-	int	i = -1;
-	while (s[++i])
+    if(argc == 1)
+        std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *" << std::endl;
+    else
 	{
-		if (isalpha(s[i]))
-			s[i] = toupper(s[i]);
-	}
-}
-
-int	main(int ac, char **av)
-{
-	if (ac == 1)
-		std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *" << "\n";
-	else
-	{
-		for(int i = 1; i < ac; i++)
+        for(int i = 1; i < argc; ++i)
 		{
-			toUpperCase(av[i]);
-			std::cout << av[i];
-		}
-		std::cout << "\n";
-	}
-	return (0);
+            std::string str(argv[i]);
+            for(char& c : str)
+                c = std::toupper(static_cast<unsigned char>(c));
+            std::cout << str;
+        }
+        std::cout << std::endl;
+    }
+    return 0;
 }

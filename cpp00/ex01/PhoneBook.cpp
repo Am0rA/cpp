@@ -73,7 +73,7 @@ int	PhoneBook::FindContact()
 	int			index;
 	while (1)
 	{
-		std::cout << BLUE << "Give index to see details: " << DEFCOLOR;
+		std::cout << BLUE << "Give an index to see the details: " << DEFCOLOR;
 		std::getline(std::cin, line);
 		if (std::cin.eof())
 		{
