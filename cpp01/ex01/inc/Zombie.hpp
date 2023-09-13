@@ -5,8 +5,8 @@
 /*                                                     +:+                    */
 /*   By: itopchu <itopchu@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2023/08/31 13:01:59 by itopchu       #+#    #+#                 */
-/*   Updated: 2023/08/31 13:01:59 by itopchu       ########   odam.nl         */
+/*   Created: 2023/08/31 13:02:09 by itopchu       #+#    #+#                 */
+/*   Updated: 2023/08/31 13:02:09 by itopchu       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # include <iostream>
 # include <string>
+# include <cstdlib>
+# include <ctime>
 # define BLUE "\033[34m"
 # define GREEN "\033[32m"
 # define YELLOW "\033[33m"
@@ -33,7 +35,7 @@ class Zombie
 	private:
 		std::string	_name;
 };
-Zombie *newZombie(std::string name);
-void	randomChump(std::string name);
+Zombie	*zombieHorde(int N, std::string name);
+
 
 #endif

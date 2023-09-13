@@ -11,8 +11,6 @@
 /* ************************************************************************** */
 
 #include "Zombie.hpp"
-#include <cstdlib>
-#include <ctime>
 
 Zombie::Zombie()
 {
