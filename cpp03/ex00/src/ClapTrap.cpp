@@ -22,14 +22,13 @@ ClapTrap::ClapTrap()
 }
 
 ClapTrap::ClapTrap(const ClapTrap &copy)
+    : _name(copy.getName()),
+      _p_hit(copy.getPhit()),
+      _p_energy(copy.getPenergy()),
+      _p_attack(copy.getPattack())
 {
-	_name = copy.getName();
-	_p_hit = copy.getPhit();
-	_p_energy = copy.getPenergy();
-	_p_attack = copy.getPattack();
-	std::cout << YELLOW "Copy Constructor of ClapTrap called" DEFCOLOR << std::endl;
+    std::cout << YELLOW "Copy Constructor of ClapTrap called" DEFCOLOR << std::endl;
 }
-
 ClapTrap::ClapTrap(std::string _name, unsigned int p_hit, unsigned int p_energy, unsigned int p_attack)
 {
 	this->_name = _name;
@@ -38,6 +37,7 @@ ClapTrap::ClapTrap(std::string _name, unsigned int p_hit, unsigned int p_energy,
 	_p_attack = p_attack;
 	std::cout << YELLOW "Fields Constructor of ClapTrap called" DEFCOLOR << std::endl;
 }
+
 
 ClapTrap::~ClapTrap()
 {
@@ -52,7 +52,6 @@ ClapTrap & ClapTrap::operator=(const ClapTrap &assign)
 	_p_attack = assign.getPattack();
 	return *this;
 }
-
 
 std::string ClapTrap::getName() const
 {
@@ -126,7 +125,7 @@ void ClapTrap::takeDamage(unsigned int amount)
 	if (tmp > this->getPhit())
 		newHitPoint = 0;
 	else
-		newHitPoint = this->getPhit() - amount;
+		newHitPoint = tmp;
 	std::cout << BLUE << this->getName() << DEFCOLOR << ": Ouch!";
 	std::cout << " I received " << RED << amount << DEFCOLOR;
 	std::cout << " damage!" << std::endl;

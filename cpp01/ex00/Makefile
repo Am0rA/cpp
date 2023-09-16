@@ -24,7 +24,7 @@ SRC_EXEC	= $(DIR_SRC)/main.cpp \
 			  $(DIR_SRC)/randomChump.cpp
 # **************************************************************************** #
 SRCS		= $(SRC_EXEC)
-OBJS		= $(patsubst %.cpp,$(DIR_OBJ)/%.o,$(SRCS))
+OBJS		= $(SRCS:$(DIR_SRC)/%.cpp=$(DIR_OBJ)/%.o)
 # **************************************************************************** #
 DEPS		= $(OBJS:.o=.d)
 -include $(DEPS)
@@ -43,11 +43,10 @@ $(NAME): $(OBJS)
 	@$(CPP) $(CPPFLAGS) $(IFLAGS) $^ -o $(NAME) $(LFLAGS)
 	@echo "\r\033[K\033[32m$(NAME) \033[0mis created."
 
-$(DIR_OBJ)/%.o: %.cpp
+$(DIR_OBJ)/%.o: $(DIR_SRC)/%.cpp
 	@echo -n "\033[33m$(NAME) is compiling...\033[0m\r"
 	@mkdir -p $(dir $@)
-	@$(CPP) $(CPPFLAGS) $(IFLAGS) -c $< -o $@.tmp
-	@mv $@.tmp $@
+	@$(CPP) $(CPPFLAGS) $(IFLAGS) -c $< -o $@ -MMD
 	@echo -n "\e[25C$< \033[32mcompiled.\033[0m"
 	@echo -n "\033[K\r"
 

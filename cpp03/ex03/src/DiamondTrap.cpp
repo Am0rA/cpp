@@ -17,7 +17,7 @@ DiamondTrap::DiamondTrap()
 
 }
 
-DiamondTrap::DiamondTrap(const std::string &copy)
+DiamondTrap::DiamondTrap(const DiamondTrap &copy)
 {
 
 }

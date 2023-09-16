@@ -28,10 +28,9 @@ Fixed::Fixed(const int value) : _value(value << _bits)
 	std::cout << "Int Constructor called of Fixed" << std::endl;
 }
 
-Fixed::Fixed(const float value)
+Fixed::Fixed(const float value) : _value(roundf(value * (1 << _bits)))
 {
 	std::cout << "Float Constructor called of Fixed" << std::endl;
-	_value = roundf(value * (1 << _bits));
 }
 
 Fixed::~Fixed()
