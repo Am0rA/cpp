@@ -10,7 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "main.hpp"
+#define GREEN "\033[32m"
+#define DEF "\033[0m"
+#include <iostream>
+#include <fstream>
+#include <string>
 
 int	main(int ac, char **av)
 {
@@ -59,11 +63,11 @@ int	main(int ac, char **av)
 		}
 		outputFile << newLine << std::endl;
 	}
-	std::cout << "Text: \"" \
-			<< GREEN << s1 << DEF << "\" in " \
-			<< GREEN << file << DEF << " replaced with \"" \
-			<< GREEN << s2 << DEF << "\" into " \
-			<< GREEN << fileOut << DEF << std::endl;
+	std::cout << "Text: " \
+			<< "\""  << GREEN << s1 << DEF << "\"" <<  " in " \
+			<< "\""  << GREEN << file << DEF << "\"" << " replaced with " \
+			<< "\""  << GREEN << s2 << DEF << "\"" << " into " \
+			<< "\""  << GREEN << fileOut << DEF << "\"" << std::endl;
 	inputFile.close();
 	outputFile.close();
 	return (0);

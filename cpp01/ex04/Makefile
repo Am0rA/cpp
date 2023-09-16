@@ -6,7 +6,7 @@
 # ╰────────────────────────────────────╯
 CPP 		= c++
 CPPFLAGS	= -Wall -Wextra -Werror -I. -std=c++98
-NAME		= Violence
+NAME		= replacer
 COMPILE		= $(CPP) $(CPPFLAGS)
 # ╭────────────────────────────────────╮
 # │               OPTIONS              │
