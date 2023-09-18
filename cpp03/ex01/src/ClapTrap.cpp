@@ -5,39 +5,46 @@
 /*                                                     +:+                    */
 /*   By: itopchu <itopchu@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2023/08/31 13:07:45 by itopchu       #+#    #+#                 */
-/*   Updated: 2023/08/31 13:07:45 by itopchu       ########   odam.nl         */
+/*   Created: 2023/08/31 13:07:11 by itopchu       #+#    #+#                 */
+/*   Updated: 2023/08/31 13:07:11 by itopchu       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ClapTrap.hpp"
 
-ClapTrap::ClapTrap()
+const std::string	ClapTrap::_c_name = "ClapTrap";
+const unsigned int	ClapTrap::_c_hp = 10;
+const unsigned int	ClapTrap::_c_ep = 10;
+const unsigned int	ClapTrap::_c_ap = 0;
+
+// Form
+
+ClapTrap::ClapTrap() : \
+	_name(ClapTrap::_c_name), \
+	_hp(ClapTrap::_c_hp), \
+	_ep(ClapTrap::_c_ep), \
+	_ap(ClapTrap::_c_ap)
 {
-	_name = "default";
-	_p_hit = 10;
-	_p_energy = 10;
-	_p_attack = 0;
 	std::cout << YELLOW "Default Constructor of ClapTrap called" DEFCOLOR << std::endl;
 }
 
 ClapTrap::ClapTrap(const ClapTrap &copy)
     : _name(copy.getName()),
-      _p_hit(copy.getPhit()),
-      _p_energy(copy.getPenergy()),
-      _p_attack(copy.getPattack())
+      _hp(copy.getHitPoint()),
+      _ep(copy.getEnergyPoint()),
+      _ap(copy.getAttackPoint())
 {
     std::cout << YELLOW "Copy Constructor of ClapTrap called" DEFCOLOR << std::endl;
 }
-ClapTrap::ClapTrap(std::string _name, unsigned int p_hit, unsigned int p_energy, unsigned int p_attack)
+
+ClapTrap::ClapTrap(std::string _name) : \
+	_name(_name), \
+	_hp(getClassHitPoint()), \
+	_ep(getClassEnergyPoint()), \
+	_ap(getClassAttackPoint())
 {
-	this->_name = _name;
-	_p_hit = p_hit;
-	_p_energy = p_energy;
-	_p_attack = p_attack;
 	std::cout << YELLOW "Fields Constructor of ClapTrap called" DEFCOLOR << std::endl;
 }
-
 
 ClapTrap::~ClapTrap()
 {
@@ -47,73 +54,100 @@ ClapTrap::~ClapTrap()
 ClapTrap & ClapTrap::operator=(const ClapTrap &assign)
 {
 	_name = assign.getName();
-	_p_hit = assign.getPhit();
-	_p_energy = assign.getPenergy();
-	_p_attack = assign.getPattack();
+	_hp = assign.getHitPoint();
+	_ep = assign.getEnergyPoint();
+	_ap = assign.getAttackPoint();
 	return *this;
 }
 
+// getters
 std::string ClapTrap::getName() const
 {
-	return _name;
+	return this->_name;
 }
+unsigned int ClapTrap::getHitPoint() const
+{
+	return this->_hp;
+}
+unsigned int ClapTrap::getEnergyPoint() const
+{
+	return this->_ep;
+}
+unsigned int ClapTrap::getAttackPoint() const
+{
+	return this->_ap;
+}
+
+//Setters
 void ClapTrap::setName(std::string _name)
 {
 	this->_name = _name;
 }
-
-unsigned int ClapTrap::getPhit() const
+void ClapTrap::setHitPoint(unsigned int hit_p)
 {
-	return _p_hit;
+	this->_hp = hit_p;
 }
-void ClapTrap::setPhit(unsigned int p_hit)
+void ClapTrap::setEnergyPoint(unsigned int energy_p)
 {
-	_p_hit = p_hit;
+	this->_ep = energy_p;
 }
-
-unsigned int ClapTrap::getPenergy() const
+void ClapTrap::setAttackPoint(unsigned int attack_p)
 {
-	return _p_energy;
-}
-void ClapTrap::setPenergy(unsigned int p_energy)
-{
-	_p_energy = p_energy;
+	this->_ap = attack_p;
 }
 
-unsigned int ClapTrap::getPattack() const
+// Static getters
+std::string ClapTrap::getClassName() 
 {
-	return _p_attack;
-}
-void ClapTrap::setPattack(unsigned int p_attack)
-{
-	_p_attack = p_attack;
+    return _c_name;
 }
 
+unsigned int ClapTrap::getClassHitPoint() 
+{
+    return _c_hp;
+}
+
+unsigned int ClapTrap::getClassEnergyPoint() 
+{
+    return _c_ep;
+}
+
+unsigned int ClapTrap::getClassAttackPoint() 
+{
+    return _c_ap;
+}
+
+// member functions
 void ClapTrap::attack(const std::string& target)
 {
-	if (target.empty())
+	if (this->getHitPoint() == 0)
 	{
-		std::cout << "I can't attack to void." << std::endl;
+		std::cout << RED << "(" << this->getName() << DEFCOLOR << ") Deads were attacking in cpp01!" << DEFCOLOR << std::endl;
 		return ;
 	}
-	else if (this->getPenergy() == 0)
+	else if (this->getEnergyPoint() == 0)
 	{
-		std::cout << BLUE << this->getName();
+		std::cout << BLUE << this->getName() << DEFCOLOR;
 		std::cout << " has no Energy points" << std::endl;
 		return ;
 	}
-	else if (this->getPattack() == 0)
+	else if (target.empty())
 	{
-		std::cout << BLUE << this->getName();
+		std::cout << this->getName() << ": I can't attack to void." << std::endl;
+		return ;
+	}
+	else if (this->getAttackPoint() == 0)
+	{
+		std::cout << BLUE << this->getName() << DEFCOLOR;
 		std::cout << " has no Attack power" << std::endl;
 		return ;
 	}
 	std::cout << BLUE << this->getName() << DEFCOLOR;
 	std::cout << " attacks " << RED << target << DEFCOLOR;
-	std::cout << ", causing " << GREEN << this->getPattack() << DEFCOLOR;
+	std::cout << ", causing " << GREEN << this->getAttackPoint() << DEFCOLOR;
 	std::cout << " points of damage!";
-	this->setPenergy(this->getPenergy() - 1);
-	std::cout << "and has " << RED << this->getPenergy() << DEFCOLOR << " energy point left." << std::endl;
+	this->setEnergyPoint(this->getEnergyPoint() - 1);
+	std::cout << " And has " << RED << this->getEnergyPoint() << DEFCOLOR << " energy point left." << std::endl;
 }
 
 void ClapTrap::takeDamage(unsigned int amount)
@@ -121,27 +155,42 @@ void ClapTrap::takeDamage(unsigned int amount)
 	unsigned int newHitPoint;
 	unsigned int tmp;
 
-	tmp = this->getPhit() - amount;
-	if (tmp > this->getPhit())
+	if (this->getHitPoint() == 0)
+	{
+		std::cout << RED << "(" << this->getName() << ") I am already dead you monster!" << DEFCOLOR << std::endl;
+		return ;
+	}
+	else if (amount == 0)
+	{
+		std::cout << "Such a useless attempt\n";
+		return ;
+	}
+	tmp = this->getHitPoint() - amount;
+	if (tmp > this->getHitPoint())
 		newHitPoint = 0;
 	else
 		newHitPoint = tmp;
 	std::cout << BLUE << this->getName() << DEFCOLOR << ": Ouch!";
 	std::cout << " I received " << RED << amount << DEFCOLOR;
 	std::cout << " damage!" << std::endl;
-	this->setPhit(newHitPoint);
+	this->setHitPoint(newHitPoint);
 }
 
 void ClapTrap::beRepaired(unsigned int amount)
 {
-	if (this->getPenergy() == 0)
+	if (this->getHitPoint() == 0)
+	{
+		std::cout << RED << "(" << this->getName() << ") I am dead!" << DEFCOLOR << std::endl;
+		return ;
+	}
+	else if (this->getEnergyPoint() == 0)
 	{
 		std::cout << BLUE << this->getName() << DEFCOLOR << " can't regenerate because has" RED " NO " DEFCOLOR "Energy points left." << std::endl;
 		return ;
 	}
 	std::cout << BLUE << this->getName() << DEFCOLOR << " regenerates " << GREEN << amount << DEFCOLOR << " hit points and reaches ";
-	this->setPhit(this->getPhit() + amount);
-	std::cout << GREEN << this->getPhit() << DEFCOLOR << " points. ";;
-	this->setPenergy(this->getPenergy() - 1);
-	std::cout << this->getName() << " has " << RED << this->getPenergy() << DEFCOLOR << " energy points left" << std::endl;
+	this->setHitPoint(this->getHitPoint() + amount);
+	std::cout << GREEN << this->getHitPoint() << DEFCOLOR << " points. ";;
+	this->setEnergyPoint(this->getEnergyPoint() - 1);
+	std::cout << this->getName() << " has " << RED << this->getEnergyPoint() << DEFCOLOR << " energy points left" << std::endl;
 }

@@ -15,22 +15,22 @@
 FragTrap::FragTrap()
 {
 	this->setName("FragTrap");
-	this->setPhit(100);
-	this->setPenergy(100);
-	this->setPattack(30);
+	this->setHitPoint(100);
+	this->setEnergyPoint(100);
+	this->setAttackPoint(30);
 	std::cout << YELLOW "Default Constructor of FragTrap called" DEFCOLOR << std::endl;
 }
 
 FragTrap::FragTrap(const std::string &name)
 {
 	this->setName(name);
-	this->setPhit(100);
-	this->setPenergy(100);
-	this->setPattack(30);
+	this->setHitPoint(100);
+	this->setEnergyPoint(100);
+	this->setAttackPoint(30);
 }
 
 FragTrap::FragTrap(const FragTrap &copy)
-    : ClapTrap(copy.getName(), copy.getPhit(), copy.getPenergy(), copy.getPattack())
+    : ClapTrap(copy.getName(), copy.getHitPoint(), copy.getEnergyPoint(), copy.getAttackPoint())
 {
 	std::cout << YELLOW "Copy Constructor of FragTrap called" DEFCOLOR << std::endl;
 }
@@ -43,9 +43,9 @@ FragTrap::~FragTrap()
 FragTrap & FragTrap::operator=(const FragTrap &assign)
 {
 	this->setName(assign.getName());
-	this->setPattack(assign.getPattack());
-	this->setPenergy(assign.getPenergy());
-	this->setPhit(assign.getPhit());
+	this->setAttackPoint(assign.getAttackPoint());
+	this->setEnergyPoint(assign.getEnergyPoint());
+	this->setHitPoint(assign.getHitPoint());
 	return *this;
 }
 

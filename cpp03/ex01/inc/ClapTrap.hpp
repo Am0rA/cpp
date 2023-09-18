@@ -5,8 +5,8 @@
 /*                                                     +:+                    */
 /*   By: itopchu <itopchu@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2023/08/31 13:07:52 by itopchu       #+#    #+#                 */
-/*   Updated: 2023/08/31 13:07:52 by itopchu       ########   odam.nl         */
+/*   Created: 2023/08/31 13:07:16 by itopchu       #+#    #+#                 */
+/*   Updated: 2023/08/31 13:07:16 by itopchu       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,30 +27,48 @@
 class ClapTrap
 {
 	public:
+		// Form
 		ClapTrap();
 		ClapTrap(const ClapTrap &copy);
-		ClapTrap(std::string _name, unsigned int p_hit, unsigned int p_energy, unsigned int p_attack);
+		ClapTrap(std::string _name);
 		~ClapTrap();
 		ClapTrap & operator=(const ClapTrap &assign);
-		
+
+		// Getters
 		std::string getName() const;
+		unsigned int getHitPoint() const;
+		unsigned int getEnergyPoint() const;
+		unsigned int getAttackPoint() const;
+		
+		// Setters
 		void setName(std::string _name);
-		unsigned int getPhit() const;
-		void setPhit(unsigned int p_hit);
-		unsigned int getPenergy() const;
-		void setPenergy(unsigned int p_energy);
-		unsigned int getPattack() const;
-		void setPattack(unsigned int p_attack);
+		void setHitPoint(unsigned int p_hit);
+		void setEnergyPoint(unsigned int p_energy);
+		void setAttackPoint(unsigned int p_attack);
+
+		// Static getters
+		static std::string		getClassName(void);
+		static unsigned int		getClassHitPoint(void);
+		static unsigned int		getClassEnergyPoint(void);
+		static unsigned int		getClassAttackPoint(void);
+
+		// Member functions
 		void attack(const std::string& target);
 		void takeDamage(unsigned int amount);
 		void beRepaired(unsigned int amount);
 		
 	private:
+		// Object attributes
 		std::string _name;
-		unsigned int _p_hit;
-		unsigned int _p_energy;
-		unsigned int _p_attack;
+		unsigned int _hp;
+		unsigned int _ep;
+		unsigned int _ap;
 		
+		// Class attributes
+		static const std::string _c_name;
+		static const unsigned int _c_hp;
+		static const unsigned int _c_ep;
+		static const unsigned int _c_ap;
 };
 
 #endif

@@ -15,13 +15,13 @@
 void	attack_func(ClapTrap &victim, ClapTrap &invader)
 {
 	invader.attack(victim.getName());
-	victim.takeDamage(invader.getPattack());
+	victim.takeDamage(invader.getAttackPoint());
 }
 
 int main()
 {
-    ClapTrap victim("Victim", 100, 2, 9);
-    ClapTrap invader("Invader", 100, 40, 8);
+    ClapTrap victim("Victim");
+    ClapTrap invader("Invader");
 
 	attack_func(victim, invader);
 

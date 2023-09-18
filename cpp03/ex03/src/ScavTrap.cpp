@@ -33,7 +33,7 @@ void ScavTrap::guardGate()
 }
 
 ScavTrap::ScavTrap(const ScavTrap &copy)
-    : ClapTrap(copy.getName(), copy.getPhit(), copy.getPenergy(), copy.getPattack())
+    : ClapTrap(copy.getName(), copy.getHitPoint(), copy.getEnergyPoint(), copy.getAttackPoint())
 {
     std::cout << YELLOW "ScavTrap Copy Constructor called" DEFCOLOR << std::endl;
 }
@@ -41,9 +41,9 @@ ScavTrap::ScavTrap(const ScavTrap &copy)
 ScavTrap & ScavTrap::operator=(const ScavTrap &assign)
 {
 	this->setName(assign.getName());
-	this->setPhit(assign.getPhit());
-	this->setPattack(assign.getPenergy());
-	this->setPenergy(assign.getPattack());
+	this->setHitPoint(assign.getHitPoint());
+	this->setAttackPoint(assign.getEnergyPoint());
+	this->setEnergyPoint(assign.getAttackPoint());
 	return *this;
 }
 

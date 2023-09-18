@@ -12,17 +12,20 @@
 
 #include "ClapTrap.hpp"
 
-void	attack_func(ClapTrap &victim, ClapTrap &invader)
+void	attack_func( ClapTrap &invader, ClapTrap &victim)
 {
 	invader.attack(victim.getName());
-	victim.takeDamage(invader.getPattack());
+	victim.takeDamage(invader.getAttackPoint());
 }
 
 int	main(void)
 {
-	ClapTrap	one("One", 100, 2, 9);
-	ClapTrap	another("Another", 100, 40, 8);
+	ClapTrap	one("One");
+	ClapTrap	another("Another");
 	attack_func(one, another);
+
+	one.setAttackPoint(10);
+
 	attack_func(one, another);
     one.beRepaired(15);
 	attack_func(another, one);

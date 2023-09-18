@@ -15,26 +15,26 @@
 ClapTrap::ClapTrap()
 {
 	_name = "default";
-	_p_hit = 10;
-	_p_energy = 10;
-	_p_attack = 0;
+	_hp = 10;
+	_ep = 10;
+	_ap = 0;
 	std::cout << YELLOW "Default Constructor of ClapTrap called" DEFCOLOR << std::endl;
 }
 
 ClapTrap::ClapTrap(const ClapTrap &copy)
     : _name(copy.getName()),
-      _p_hit(copy.getPhit()),
-      _p_energy(copy.getPenergy()),
-      _p_attack(copy.getPattack())
+      _hp(copy.getHitPoint()),
+      _ep(copy.getEnergyPoint()),
+      _ap(copy.getAttackPoint())
 {
     std::cout << YELLOW "Copy Constructor of ClapTrap called" DEFCOLOR << std::endl;
 }
 ClapTrap::ClapTrap(std::string _name, unsigned int p_hit, unsigned int p_energy, unsigned int p_attack)
 {
 	this->_name = _name;
-	_p_hit = p_hit;
-	_p_energy = p_energy;
-	_p_attack = p_attack;
+	_hp = p_hit;
+	_ep = p_energy;
+	_ap = p_attack;
 	std::cout << YELLOW "Fields Constructor of ClapTrap called" DEFCOLOR << std::endl;
 }
 
@@ -47,9 +47,9 @@ ClapTrap::~ClapTrap()
 ClapTrap & ClapTrap::operator=(const ClapTrap &assign)
 {
 	_name = assign.getName();
-	_p_hit = assign.getPhit();
-	_p_energy = assign.getPenergy();
-	_p_attack = assign.getPattack();
+	_hp = assign.getHitPoint();
+	_ep = assign.getEnergyPoint();
+	_ap = assign.getAttackPoint();
 	return *this;
 }
 
@@ -62,31 +62,31 @@ void ClapTrap::setName(std::string _name)
 	this->_name = _name;
 }
 
-unsigned int ClapTrap::getPhit() const
+unsigned int ClapTrap::getHitPoint() const
 {
-	return _p_hit;
+	return _hp;
 }
-void ClapTrap::setPhit(unsigned int p_hit)
+void ClapTrap::setHitPoint(unsigned int p_hit)
 {
-	_p_hit = p_hit;
-}
-
-unsigned int ClapTrap::getPenergy() const
-{
-	return _p_energy;
-}
-void ClapTrap::setPenergy(unsigned int p_energy)
-{
-	_p_energy = p_energy;
+	_hp = p_hit;
 }
 
-unsigned int ClapTrap::getPattack() const
+unsigned int ClapTrap::getEnergyPoint() const
 {
-	return _p_attack;
+	return _ep;
 }
-void ClapTrap::setPattack(unsigned int p_attack)
+void ClapTrap::setEnergyPoint(unsigned int p_energy)
 {
-	_p_attack = p_attack;
+	_ep = p_energy;
+}
+
+unsigned int ClapTrap::getAttackPoint() const
+{
+	return _ap;
+}
+void ClapTrap::setAttackPoint(unsigned int p_attack)
+{
+	_ap = p_attack;
 }
 
 void ClapTrap::attack(const std::string& target)
@@ -96,13 +96,13 @@ void ClapTrap::attack(const std::string& target)
 		std::cout << "I can't attack to void." << std::endl;
 		return ;
 	}
-	else if (this->getPenergy() == 0)
+	else if (this->getEnergyPoint() == 0)
 	{
 		std::cout << BLUE << this->getName();
 		std::cout << " has no Energy points" << std::endl;
 		return ;
 	}
-	else if (this->getPattack() == 0)
+	else if (this->getAttackPoint() == 0)
 	{
 		std::cout << BLUE << this->getName();
 		std::cout << " has no Attack power" << std::endl;
@@ -110,10 +110,10 @@ void ClapTrap::attack(const std::string& target)
 	}
 	std::cout << BLUE << this->getName() << DEFCOLOR;
 	std::cout << " attacks " << RED << target << DEFCOLOR;
-	std::cout << ", causing " << GREEN << this->getPattack() << DEFCOLOR;
+	std::cout << ", causing " << GREEN << this->getAttackPoint() << DEFCOLOR;
 	std::cout << " points of damage!";
-	this->setPenergy(this->getPenergy() - 1);
-	std::cout << "and has " << RED << this->getPenergy() << DEFCOLOR << " energy point left." << std::endl;
+	this->setEnergyPoint(this->getEnergyPoint() - 1);
+	std::cout << "and has " << RED << this->getEnergyPoint() << DEFCOLOR << " energy point left." << std::endl;
 }
 
 void ClapTrap::takeDamage(unsigned int amount)
@@ -121,27 +121,27 @@ void ClapTrap::takeDamage(unsigned int amount)
 	unsigned int newHitPoint;
 	unsigned int tmp;
 
-	tmp = this->getPhit() - amount;
-	if (tmp > this->getPhit())
+	tmp = this->getHitPoint() - amount;
+	if (tmp > this->getHitPoint())
 		newHitPoint = 0;
 	else
 		newHitPoint = tmp;
 	std::cout << BLUE << this->getName() << DEFCOLOR << ": Ouch!";
 	std::cout << " I received " << RED << amount << DEFCOLOR;
 	std::cout << " damage!" << std::endl;
-	this->setPhit(newHitPoint);
+	this->setHitPoint(newHitPoint);
 }
 
 void ClapTrap::beRepaired(unsigned int amount)
 {
-	if (this->getPenergy() == 0)
+	if (this->getEnergyPoint() == 0)
 	{
 		std::cout << BLUE << this->getName() << DEFCOLOR << " can't regenerate because has" RED " NO " DEFCOLOR "Energy points left." << std::endl;
 		return ;
 	}
 	std::cout << BLUE << this->getName() << DEFCOLOR << " regenerates " << GREEN << amount << DEFCOLOR << " hit points and reaches ";
-	this->setPhit(this->getPhit() + amount);
-	std::cout << GREEN << this->getPhit() << DEFCOLOR << " points. ";;
-	this->setPenergy(this->getPenergy() - 1);
-	std::cout << this->getName() << " has " << RED << this->getPenergy() << DEFCOLOR << " energy points left" << std::endl;
+	this->setHitPoint(this->getHitPoint() + amount);
+	std::cout << GREEN << this->getHitPoint() << DEFCOLOR << " points. ";;
+	this->setEnergyPoint(this->getEnergyPoint() - 1);
+	std::cout << this->getName() << " has " << RED << this->getEnergyPoint() << DEFCOLOR << " energy points left" << std::endl;
 }

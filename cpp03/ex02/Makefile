@@ -26,7 +26,7 @@ SRC_EXEC	= $(DIR_SRC)/ClapTrap.cpp \
 SRCS		= $(SRC_EXEC)
 OBJS		= $(SRCS:$(DIR_SRC)/%.cpp=$(DIR_OBJ)/%.o)
 # **************************************************************************** #
-DEPS		= $(OBJS:.o=.d)
+DEPS		= $(DIR_OBJ)/$(NAME).d
 -include $(DEPS)
 # **************************************************************************** #
 all: $(NAME)
@@ -46,17 +46,19 @@ $(NAME): $(OBJS)
 $(DIR_OBJ)/%.o: $(DIR_SRC)/%.cpp
 	@echo -n "\033[33m$(NAME) is compiling...\033[0m\r"
 	@mkdir -p $(dir $@)
-	@$(CPP) $(CPPFLAGS) $(IFLAGS) -c $< -o $@ -MMD
+	@$(CPP) $(CPPFLAGS) $(IFLAGS) -c $< -o $@ -MMD -MF $(DEPS) -MT $@
 	@echo -n "\e[25C$< \033[32mcompiled.\033[0m"
 	@echo -n "\033[K\r"
+
+-include $(DEPS)
 
 clean:
 	@$(RM) $(DIR_OBJ)
 	@echo "Object files are removed"
 
 fclean: clean
-	@$(RM) $(NAME)
-	@echo "$(NAME) is removed"
+	@$(RM) $(NAME) $(DEPS)
+	@echo "$(NAME) and dependencies are removed"
 
 re: fclean all
 

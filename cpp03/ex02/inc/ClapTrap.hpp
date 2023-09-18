@@ -35,21 +35,21 @@ class ClapTrap
 		
 		std::string getName() const;
 		void setName(std::string _name);
-		unsigned int getPhit() const;
-		void setPhit(unsigned int p_hit);
-		unsigned int getPenergy() const;
-		void setPenergy(unsigned int p_energy);
-		unsigned int getPattack() const;
-		void setPattack(unsigned int p_attack);
+		unsigned int getHitPoint() const;
+		void setHitPoint(unsigned int p_hit);
+		unsigned int getEnergyPoint() const;
+		void setEnergyPoint(unsigned int p_energy);
+		unsigned int getAttackPoint() const;
+		void setAttackPoint(unsigned int p_attack);
 		void attack(const std::string& target);
 		void takeDamage(unsigned int amount);
 		void beRepaired(unsigned int amount);
 		
 	private:
 		std::string _name;
-		unsigned int _p_hit;
-		unsigned int _p_energy;
-		unsigned int _p_attack;
+		unsigned int _hp;
+		unsigned int _ep;
+		unsigned int _ap;
 		
 };
 
