@@ -72,3 +72,5 @@ void FragTrap::highFivesGuys(void)
 			  << padding << "     .@@+@@\n" \
 			  << padding << "      .@#@\n" DEFCOLOR;
 }
+
+void	test();
