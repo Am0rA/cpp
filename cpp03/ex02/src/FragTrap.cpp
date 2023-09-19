@@ -12,45 +12,49 @@
 
 #include "FragTrap.hpp"
 
-FragTrap::FragTrap()
+FragTrap::FragTrap() : ClapTrap("Frag")
 {
-	this->setName("FragTrap");
-	this->setHitPoint(100);
-	this->setEnergyPoint(100);
-	this->setAttackPoint(30);
-	std::cout << YELLOW "Default Constructor of FragTrap called" DEFCOLOR << std::endl;
+    std::cout << YELLOW "Default FragTrap Constructor called" DEFCOLOR << "\n";
+    setHitPoint(100);
+    setEnergyPoint(100);
+    setAttackPoint(30);
 }
 
-FragTrap::FragTrap(const std::string &name)
+FragTrap::FragTrap(std::string name) : ClapTrap(name)
 {
-	this->setName(name);
-	this->setHitPoint(100);
-	this->setEnergyPoint(100);
-	this->setAttackPoint(30);
+    std::cout << YELLOW "FragTrap Constructor called" DEFCOLOR << "\n";
+    setHitPoint(100);
+    setEnergyPoint(100);
+    setAttackPoint(30);
 }
 
-FragTrap::FragTrap(const FragTrap &copy)
-    : ClapTrap(copy.getName(), copy.getHitPoint(), copy.getEnergyPoint(), copy.getAttackPoint())
+FragTrap::FragTrap(const FragTrap &copy) : ClapTrap(copy)
 {
-	std::cout << YELLOW "Copy Constructor of FragTrap called" DEFCOLOR << std::endl;
+    std::cout << YELLOW "FragTrap Copy Constructor called" DEFCOLOR << std::endl;
+    *this = copy;
 }
 
 FragTrap::~FragTrap()
 {
-	std::cout << PURP "Destructor of FragTrap called" DEFCOLOR << std::endl;
+    std::cout << PURP "FragTrap Destructor called" DEFCOLOR << "\n";
 }
 
 FragTrap & FragTrap::operator=(const FragTrap &assign)
 {
-	this->setName(assign.getName());
-	this->setAttackPoint(assign.getAttackPoint());
-	this->setEnergyPoint(assign.getEnergyPoint());
-	this->setHitPoint(assign.getHitPoint());
-	return *this;
+    setName(assign.getName());
+    setHitPoint(assign.getHitPoint());
+    setEnergyPoint(assign.getEnergyPoint());
+    setAttackPoint(assign.getAttackPoint());
+    return *this;
 }
 
-void	FragTrap::highFivesGuys(void)
+void FragTrap::highFivesGuys(void)
 {
-	std::cout << "HEeYEyY HighFive" << std::endl;
-}
+    std::string name = getName();
+    std::string padding = std::string(name.length() + 6, ' '); 
 
+    std::cout << "I am " BLUE << name << DEFCOLOR \
+			  << GREEN " \\o/" DEFCOLOR ". Would you like a High five?\n"
+              << padding << GREEN " |\n"
+              << padding << "/ \\\n" DEFCOLOR;
+}

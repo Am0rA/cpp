@@ -12,14 +12,26 @@
 
 #include "ScavTrap.hpp"
 
-ScavTrap::ScavTrap() : ClapTrap("Scav", 100, 50, 20)
+ScavTrap::ScavTrap() : ClapTrap("Scav")
 {
     std::cout << YELLOW "Default ScavTrap Constructor called" DEFCOLOR << "\n";
+    setHitPoint(100);
+    setEnergyPoint(50);
+    setAttackPoint(20);
 }
 
-ScavTrap::ScavTrap(std::string name) : ClapTrap(name, 100, 50, 20)
+ScavTrap::ScavTrap(std::string name) : ClapTrap(name)
 {
     std::cout << YELLOW "ScavTrap Constructor called" DEFCOLOR << "\n";
+    setHitPoint(100);
+    setEnergyPoint(50);
+    setAttackPoint(20);
+}
+
+ScavTrap::ScavTrap(const ScavTrap &copy) : ClapTrap(copy)
+{
+    std::cout << YELLOW "ScavTrap Copy Constructor called" DEFCOLOR << std::endl;
+    *this = copy;
 }
 
 ScavTrap::~ScavTrap()
@@ -27,23 +39,21 @@ ScavTrap::~ScavTrap()
     std::cout << PURP "ScavTrap Destructor called" DEFCOLOR << "\n";
 }
 
+ScavTrap & ScavTrap::operator=(const ScavTrap &assign)
+{
+    setName(assign.getName());
+    setHitPoint(assign.getHitPoint());
+    setEnergyPoint(assign.getEnergyPoint());
+    setAttackPoint(assign.getAttackPoint());
+    return *this;
+}
+
 void ScavTrap::guardGate()
 {
     std::cout << YELLOW << getName() << DEFCOLOR << " is now in Gate keeper mode." << "\n";
 }
 
-ScavTrap::ScavTrap(const ScavTrap &copy)
-    : ClapTrap(copy.getName(), copy.getHitPoint(), copy.getEnergyPoint(), copy.getAttackPoint())
+void ScavTrap::attack(const std::string& target)
 {
-    std::cout << YELLOW "ScavTrap Copy Constructor called" DEFCOLOR << std::endl;
+    std::cout << YELLOW << getName() << DEFCOLOR << " (ScavTrap) attacks " RED << target << DEFCOLOR ", causing " << getAttackPoint() << " points of damage!" << "\n";
 }
-
-ScavTrap & ScavTrap::operator=(const ScavTrap &assign)
-{
-	this->setName(assign.getName());
-	this->setHitPoint(assign.getHitPoint());
-	this->setAttackPoint(assign.getEnergyPoint());
-	this->setEnergyPoint(assign.getAttackPoint());
-	return *this;
-}
-

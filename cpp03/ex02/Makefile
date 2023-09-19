@@ -26,8 +26,7 @@ SRC_EXEC	= $(DIR_SRC)/ClapTrap.cpp \
 SRCS		= $(SRC_EXEC)
 OBJS		= $(SRCS:$(DIR_SRC)/%.cpp=$(DIR_OBJ)/%.o)
 # **************************************************************************** #
-DEPS		= $(DIR_OBJ)/$(NAME).d
--include $(DEPS)
+DEPS		= $(OBJS:.o=.d)
 # **************************************************************************** #
 all: $(NAME)
 
@@ -46,7 +45,7 @@ $(NAME): $(OBJS)
 $(DIR_OBJ)/%.o: $(DIR_SRC)/%.cpp
 	@echo -n "\033[33m$(NAME) is compiling...\033[0m\r"
 	@mkdir -p $(dir $@)
-	@$(CPP) $(CPPFLAGS) $(IFLAGS) -c $< -o $@ -MMD -MF $(DEPS) -MT $@
+	@$(CPP) $(CPPFLAGS) $(IFLAGS) -c $< -o $@ -MMD -MF $(@:.o=.d) -MT $@
 	@echo -n "\e[25C$< \033[32mcompiled.\033[0m"
 	@echo -n "\033[K\r"
 
