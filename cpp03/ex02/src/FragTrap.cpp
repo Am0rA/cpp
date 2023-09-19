@@ -58,8 +58,8 @@ void FragTrap::highFivesGuys(void)
 			  << padding << GREEN "         ,*,       .%," YELLOW "║Would you like a High five?║\n" GREEN \
 			  << padding << "        ,;,,     ,?.  ╚═══════════════════════════╝\n" \
 			  << padding << "    %$::$@@@*;+  ,@.\n" \
-			  << padding << "    ?$::@++@?:;  .#.\n" \
-			  << padding << "   .@$::@++@::.  .#.\n" \
+			  << padding << "    ?$::@" BLUE "++" GREEN "@?:;  .#.\n" \
+			  << padding << "   .@$::@" BLUE "++" GREEN "@::.  .#.\n" \
 			  << padding << "   # $..*@@+.*$%?\n" \
 			  << padding << "  %  $...##.;\n" \
 			  << padding << "%,   #::?%#;:\n" \
