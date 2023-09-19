@@ -53,8 +53,22 @@ void FragTrap::highFivesGuys(void)
     std::string name = getName();
     std::string padding = std::string(name.length() + 6, ' '); 
 
-    std::cout << "I am " BLUE << name << DEFCOLOR \
-			  << GREEN " \\o/" DEFCOLOR ". Would you like a High five?\n"
-              << padding << GREEN " |\n"
-              << padding << "/ \\\n" DEFCOLOR;
+    std::cout << "I am " BLUE << name << DEFCOLOR << "." \
+			  << GREEN "           .%         ╔═══════════════════════════╗\n" DEFCOLOR \
+			  << padding << GREEN "         ,*,       .%," YELLOW "║Would you like a High five?║\n" GREEN \
+			  << padding << "        ,;,,     ,?.  ╚═══════════════════════════╝\n" \
+			  << padding << "    %$::$@@@*;+  ,@.\n" \
+			  << padding << "    ?$::@++@?:;  .#.\n" \
+			  << padding << "   .@$::@++@::.  .#.\n" \
+			  << padding << "   # $..*@@+.*$%?\n" \
+			  << padding << "  %  $...##.;\n" \
+			  << padding << "%,   #::?%#;:\n" \
+			  << padding << "?$,  #::?&%::\n" \
+			  << padding << "  $  #::###:$\n" \
+			  << padding << "     ,#:#$$#:\n" \
+			  << padding << "     ,#$$$$#:\n" \
+			  << padding << "     .######\n" \
+			  << padding << "     .#@@@#;\n" \
+			  << padding << "     .@@+@@\n" \
+			  << padding << "      .@#@\n" DEFCOLOR;
 }
