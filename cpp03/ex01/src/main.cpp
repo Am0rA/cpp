@@ -12,7 +12,7 @@
 
 #include "ScavTrap.hpp"
 
-void	attack_func(ClapTrap &victim, ClapTrap &invader)
+void	attack_func( ClapTrap &invader, ClapTrap &victim)
 {
 	invader.attack(victim.getName());
 	victim.takeDamage(invader.getAttackPoint());
@@ -20,22 +20,22 @@ void	attack_func(ClapTrap &victim, ClapTrap &invader)
 
 int main()
 {
-    ClapTrap victim("Victim");
-    ClapTrap invader("Invader");
+    ClapTrap ciguli("Ciguli");
+    ClapTrap ajdar("Ajdar");
 
-	attack_func(victim, invader);
+	attack_func(ciguli, ajdar);
 
     ScavTrap scavTrap("Scavvy");
-	attack_func(victim, scavTrap);
+	attack_func(ciguli, scavTrap);
 
 	ScavTrap scaviTrap = scavTrap;
-	attack_func(victim, scaviTrap);
+	attack_func(ciguli, scaviTrap);
     scavTrap.guardGate();
-    victim.beRepaired(35);
+    ciguli.beRepaired(35);
     scavTrap.beRepaired(80);
 
-	attack_func(victim, invader);
-    victim.beRepaired(33);
+	attack_func(ciguli, scavTrap);
+    ciguli.beRepaired(33);
 
     return 0;
 }
