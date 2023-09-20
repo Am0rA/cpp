@@ -12,20 +12,25 @@
 
 #include "FragTrap.hpp"
 
-FragTrap::FragTrap() : ClapTrap("Frag")
+const std::string	FragTrap::_c_name = "FragTrap";
+const unsigned int	FragTrap::_c_hp = 100;
+const unsigned int	FragTrap::_c_ep = 100;
+const unsigned int	FragTrap::_c_ap = 30;
+
+FragTrap::FragTrap() : ClapTrap(FragTrap::_c_name)
 {
     std::cout << YELLOW "Default FragTrap Constructor called" DEFCOLOR << "\n";
-    setHitPoint(100);
-    setEnergyPoint(100);
-    setAttackPoint(30);
+    setHitPoint(FragTrap::_c_hp);
+    setEnergyPoint(FragTrap::_c_ep);
+    setAttackPoint(FragTrap::_c_ap);
 }
 
 FragTrap::FragTrap(std::string name) : ClapTrap(name)
 {
     std::cout << YELLOW "FragTrap Constructor called" DEFCOLOR << "\n";
-    setHitPoint(100);
-    setEnergyPoint(100);
-    setAttackPoint(30);
+    setHitPoint(FragTrap::_c_hp);
+    setEnergyPoint(FragTrap::_c_ep);
+    setAttackPoint(FragTrap::_c_ap);
 }
 
 FragTrap::FragTrap(const FragTrap &copy) : ClapTrap(copy)
@@ -48,6 +53,27 @@ FragTrap & FragTrap::operator=(const FragTrap &assign)
     return *this;
 }
 
+// Static getters
+std::string FragTrap::getClassName() 
+{
+    return _c_name;
+}
+
+unsigned int FragTrap::getClassHitPoint() 
+{
+    return _c_hp;
+}
+
+unsigned int FragTrap::getClassEnergyPoint() 
+{
+    return _c_ep;
+}
+
+unsigned int FragTrap::getClassAttackPoint() 
+{
+    return _c_ap;
+}
+
 void FragTrap::highFivesGuys(void)
 {
     std::string name = getName();
@@ -68,7 +94,7 @@ void FragTrap::highFivesGuys(void)
 			  << padding << "     ,#:#$$#:\n" \
 			  << padding << "     ,#$$$$#:\n" \
 			  << padding << "     .######\n" \
-			  << padding << "     .#@@@#;\n" \
+			  << padding << "      .@@@;\n" \
 			  << padding << "     .@@+@@\n" \
 			  << padding << "      .@#@\n" DEFCOLOR;
 }
