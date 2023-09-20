@@ -12,13 +12,15 @@
 
 #include "DiamondTrap.hpp"
 
+const std::string	DiamondTrap::_c_name = "DiamondTrap";
+
 DiamondTrap::DiamondTrap() :
 	ClapTrap("diamond_clap_trap"),
-    FragTrap(),
-	ScavTrap()
+    FragTrap("diamond_frag_trap"),
+	ScavTrap("diamond_scav_trap")
 {
     std::cout << YELLOW "A DiamondTrap called " BLUE "DiamondTrap" YELLOW " is born!\n" DEFCOLOR;
-	this->_name = "DiamondTrap";
+	this->_name = getClassName();
 	this->setAttackPoint(FragTrap::getClassAttackPoint());
 	this->setEnergyPoint(ScavTrap::getClassEnergyPoint());
 	this->setHitPoint(FragTrap::getClassHitPoint());
@@ -26,8 +28,8 @@ DiamondTrap::DiamondTrap() :
 
 DiamondTrap::DiamondTrap(std::string name) :
 	ClapTrap(name + "_clap_trap"),
-    FragTrap(),
-	ScavTrap()
+    FragTrap(name + "_frag_trap"),
+	ScavTrap(name + "_scav_trap")
 {
     std::cout << YELLOW "A DiamondTrap called " BLUE << name << YELLOW " is born!\n" DEFCOLOR;
     this->_name = name;
@@ -36,13 +38,13 @@ DiamondTrap::DiamondTrap(std::string name) :
 	this->setHitPoint(FragTrap::getClassHitPoint());
 }
 
-DiamondTrap::DiamondTrap(DiamondTrap const & ref) :
-	ClapTrap(ref._name + "_clap_trap"),
-    FragTrap(), 
-	ScavTrap()
+DiamondTrap::DiamondTrap(DiamondTrap const &copy) :
+	ClapTrap(copy._name + "_clap_trap"),
+    FragTrap(copy._name + "_frag_trap"), 
+	ScavTrap(copy._name + "_scav_trap")
 {
-	std::cout << YELLOW "Copy constructor of DiamondTrap is called and " << ref.getClassName() << " is copied\n" DEFCOLOR;
-    *this = ref;
+	std::cout << YELLOW "Copy constructor of DiamondTrap is called and " << copy.getClassName() << " is copied\n" DEFCOLOR;
+    *this = copy;
 }
 
 DiamondTrap::~DiamondTrap()
@@ -59,8 +61,30 @@ DiamondTrap& DiamondTrap::operator=(const DiamondTrap &other)
     return (*this);
 }
 
+// Static getters
+std::string DiamondTrap::getClassName() 
+{
+    return (_c_name);
+}
+
+unsigned int DiamondTrap::getClassHitPoint() 
+{
+    return (DiamondTrap::getClassHitPoint());
+}
+
+unsigned int DiamondTrap::getClassEnergyPoint() 
+{
+	return (ScavTrap::getClassEnergyPoint());
+}
+
+unsigned int DiamondTrap::getClassAttackPoint() 
+{	
+	return (DiamondTrap::getClassAttackPoint());
+}
+
+// Member functions
 void DiamondTrap::whoAmI() const
 {
     std::cout << "DiamondTrap's name is " << BLUE << this->_name << DEFCOLOR << std::endl;
-    std::cout << "ClapTrap's name is " << BLUE << FragTrap::getName() << DEFCOLOR << std::endl;
+    std::cout << "ClapTrap's name is " << BLUE << ClapTrap::getName() << DEFCOLOR << std::endl;
 }
