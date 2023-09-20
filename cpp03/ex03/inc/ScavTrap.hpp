@@ -15,7 +15,7 @@
 
 # include "ClapTrap.hpp"
 
-class ScavTrap : public ClapTrap
+class ScavTrap : virtual public ClapTrap
 {
 	public:
 		ScavTrap();
@@ -24,6 +24,7 @@ class ScavTrap : public ClapTrap
 		~ScavTrap();
 		ScavTrap & operator=(const ScavTrap &assign);
 		void	guardGate(void);
+		void	attack(const std::string& target);
 	private:
 
 };

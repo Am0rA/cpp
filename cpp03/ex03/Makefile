@@ -5,7 +5,7 @@
 # │              CXX part              │
 # ╰────────────────────────────────────╯
 CPP 		:= c++
-NAME		= fragtrap
+NAME		= diamondtrap
 DIR_OBJ		= ./obj
 DIR_INC		= ./inc
 DIR_SRC		= ./src

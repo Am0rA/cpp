@@ -10,31 +10,47 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "FragTrap.hpp"
 #include "ScavTrap.hpp"
+#include "DiamondTrap.hpp"
+
+void	attack_func(ClapTrap &invader, ClapTrap &victim)
+{
+	invader.attack(victim.getName());
+	victim.takeDamage(invader.getAttackPoint());
+}
 
 int main()
 {
-    ClapTrap victim("Victim", 100, 2, 9);
-    ClapTrap invader("Invader", 100, 40, 8);
+    ClapTrap ciguli("Ciguli");
+    ClapTrap ajdar("Ajdar");
 
-    invader.attack("Victim");
-    victim.takeDamage(invader.getAttackPoint());
+	attack_func(ciguli, ajdar);
 
-    ScavTrap scavTrap("Scavvy");
-    scavTrap.attack("Victim");
-    victim.takeDamage(scavTrap.getAttackPoint());
+    ScavTrap scooby("Scooby");
+	attack_func(ciguli, scooby);
 
-	invader.attack(scavTrap.getName());
-	scavTrap.takeDamage(invader.getAttackPoint());
-    scavTrap.guardGate();
+	ScavTrap scoobi = scooby;
+	attack_func(scoobi, scooby);
+	attack_func(ciguli, scoobi);
+    scooby.guardGate();
+    ciguli.beRepaired(35);
+    scooby.beRepaired(80);
 
-    victim.beRepaired(35);
-    scavTrap.beRepaired(80);
+	attack_func(ciguli, scooby);
+    ciguli.beRepaired(33);
+	FragTrap frog("Frog");
+	attack_func(frog, ciguli);
+	frog.beRepaired(999);
+	frog.highFivesGuys();
 
-    invader.attack("Victim");
-    victim.takeDamage(invader.getAttackPoint());
-
-    victim.beRepaired(33);
-
+    DiamondTrap diamond;
+    diamond.whoAmI();
+    attack_func(diamond, ciguli);
+    attack_func(frog, diamond);
+    diamond.beRepaired(50);
+    diamond.whoAmI();
+    diamond.guardGate();
+    diamond.highFivesGuys();
     return 0;
 }
