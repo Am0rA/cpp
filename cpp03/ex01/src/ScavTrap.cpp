@@ -12,31 +12,34 @@
 
 #include "ScavTrap.hpp"
 
-ScavTrap::ScavTrap() : ClapTrap("Scav")
+const std::string ScavTrap::DEFAULT_NAME = "ScavTrap";
+
+ScavTrap::ScavTrap() :
+	ClapTrap(DEFAULT_NAME)
 {
-    std::cout << YELLOW "Default ScavTrap Constructor called" DEFCOLOR << "\n";
-    setHitPoint(100);
-    setEnergyPoint(50);
-    setAttackPoint(20);
+	std::cout << YELLOW "A ScavTrap called " << ScavTrap::DEFAULT_NAME << " is constructed" DEFCOLOR << std::endl;
+    setHitPoint(DEFAULT_HP);
+    setEnergyPoint(DEFAULT_EP);
+    setAttackPoint(DEFAULT_AP);
 }
 
-ScavTrap::ScavTrap(std::string name) : ClapTrap(name)
+ScavTrap::ScavTrap(std::string _name) : ClapTrap(_name)
 {
-    std::cout << YELLOW "ScavTrap Constructor called" DEFCOLOR << "\n";
-    setHitPoint(100);
-    setEnergyPoint(50);
-    setAttackPoint(20);
+	std::cout << YELLOW "A ScavTrap called " << _name << " is constructed" DEFCOLOR << std::endl;
+    setHitPoint(DEFAULT_HP);
+    setEnergyPoint(DEFAULT_EP);
+    setAttackPoint(DEFAULT_AP);
 }
 
 ScavTrap::ScavTrap(const ScavTrap &copy) : ClapTrap(copy)
 {
-    std::cout << YELLOW "ScavTrap Copy Constructor called" DEFCOLOR << std::endl;
+    std::cout << YELLOW "A copy ScavTrap of " << copy.getName() << " is constructed" DEFCOLOR << std::endl;
     *this = copy;
 }
 
 ScavTrap::~ScavTrap()
 {
-    std::cout << PURP "ScavTrap Destructor called" DEFCOLOR << "\n";
+	std::cout << PURP "A ScavTrap called " << this->getName() << " is deconstructed" DEFCOLOR << std::endl;
 }
 
 ScavTrap & ScavTrap::operator=(const ScavTrap &assign)

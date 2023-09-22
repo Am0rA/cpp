@@ -12,17 +12,7 @@
 
 #ifndef CLAPTRAP_HPP
 # define CLAPTRAP_HPP
-
-# include <iostream>
-# include <string>
-
-# define RED "\e[1;31m"
-# define BLUE "\e[1;34m"
-# define GREEN "\e[1;32m"
-# define YELLOW "\e[0;33m"
-# define PURP "\e[0;35m"
-# define L_BLUE "\e[1;36m"
-# define DEFCOLOR "\033[0m"
+# include "main.hpp"
 
 class ClapTrap
 {
@@ -31,7 +21,7 @@ class ClapTrap
 		ClapTrap();
 		ClapTrap(const ClapTrap &copy);
 		ClapTrap(std::string _name);
-		~ClapTrap();
+		virtual ~ClapTrap();
 		ClapTrap & operator=(const ClapTrap &assign);
 
 		// Getters
@@ -46,12 +36,6 @@ class ClapTrap
 		void setEnergyPoint(unsigned int p_energy);
 		void setAttackPoint(unsigned int p_attack);
 
-		// Static getters
-		static std::string		getClassName(void);
-		static unsigned int		getClassHitPoint(void);
-		static unsigned int		getClassEnergyPoint(void);
-		static unsigned int		getClassAttackPoint(void);
-
 		// Member functions
 		void attack(const std::string& target);
 		void takeDamage(unsigned int amount);
@@ -63,12 +47,12 @@ class ClapTrap
 		unsigned int _hp;
 		unsigned int _ep;
 		unsigned int _ap;
-		
-		// Class attributes
-		static const std::string _c_name;
-		static const unsigned int _c_hp;
-		static const unsigned int _c_ep;
-		static const unsigned int _c_ap;
+	
+	protected:
+		static const unsigned int DEFAULT_HP = 100;
+		static const unsigned int DEFAULT_EP = 50;
+		static const unsigned int DEFAULT_AP = 20;
+		static const std::string DEFAULT_NAME;
 };
 
 #endif

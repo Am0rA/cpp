@@ -30,15 +30,14 @@ class DiamondTrap: virtual public FragTrap, virtual public ScavTrap
 		void whoAmI(void) const;
 		// derived declarations
 		using ScavTrap::attack;
-		// Static getters
-		static std::string		getClassName(void);
-		static unsigned int		getClassHitPoint(void);
-		static unsigned int		getClassEnergyPoint(void);
-		static unsigned int		getClassAttackPoint(void);
     private:
 		// Class attributes
-		static const std::string _c_name;
         std::string _name;
+	protected:
+		static const unsigned int DEFAULT_HP = FragTrap::DEFAULT_HP;
+		static const unsigned int DEFAULT_EP = ScavTrap::DEFAULT_EP;
+		static const unsigned int DEFAULT_AP = FragTrap::DEFAULT_AP;
+		static const std::string DEFAULT_NAME;
 };
 
 #endif

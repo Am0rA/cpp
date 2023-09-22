@@ -12,36 +12,34 @@
 
 #include "FragTrap.hpp"
 
-const std::string	FragTrap::_c_name = "FragTrap";
-const unsigned int	FragTrap::_c_hp = 100;
-const unsigned int	FragTrap::_c_ep = 100;
-const unsigned int	FragTrap::_c_ap = 30;
+const std::string FragTrap::DEFAULT_NAME = "FragTrap";
 
-FragTrap::FragTrap() : ClapTrap(FragTrap::_c_name)
+FragTrap::FragTrap() :
+	ClapTrap(DEFAULT_NAME)
 {
-    std::cout << YELLOW "Default FragTrap Constructor called" DEFCOLOR << "\n";
-    setHitPoint(FragTrap::_c_hp);
-    setEnergyPoint(FragTrap::_c_ep);
-    setAttackPoint(FragTrap::_c_ap);
+	std::cout << YELLOW "A FragTrap called " << FragTrap::DEFAULT_NAME << " is constructed" DEFCOLOR << std::endl;
+    setHitPoint(DEFAULT_HP);
+    setEnergyPoint(DEFAULT_EP);
+    setAttackPoint(DEFAULT_AP);
 }
 
-FragTrap::FragTrap(std::string name) : ClapTrap(name)
+FragTrap::FragTrap(std::string _name) : ClapTrap(_name)
 {
-    std::cout << YELLOW "FragTrap Constructor called" DEFCOLOR << "\n";
-    setHitPoint(FragTrap::_c_hp);
-    setEnergyPoint(FragTrap::_c_ep);
-    setAttackPoint(FragTrap::_c_ap);
+	std::cout << YELLOW "A FragTrap called " << _name << " is constructed" DEFCOLOR << std::endl;
+    setHitPoint(DEFAULT_HP);
+    setEnergyPoint(DEFAULT_EP);
+    setAttackPoint(DEFAULT_AP);
 }
 
 FragTrap::FragTrap(const FragTrap &copy) : ClapTrap(copy)
 {
-    std::cout << YELLOW "FragTrap Copy Constructor called" DEFCOLOR << std::endl;
+    std::cout << YELLOW "A copy FragTrap of " << copy.getName() << " is constructed" DEFCOLOR << std::endl;
     *this = copy;
 }
 
 FragTrap::~FragTrap()
 {
-    std::cout << PURP "FragTrap Destructor called" DEFCOLOR << "\n";
+	std::cout << PURP "A FragTrap called " << this->getName() << " is deconstructed" DEFCOLOR << std::endl;
 }
 
 FragTrap & FragTrap::operator=(const FragTrap &assign)
@@ -51,27 +49,6 @@ FragTrap & FragTrap::operator=(const FragTrap &assign)
     setEnergyPoint(assign.getEnergyPoint());
     setAttackPoint(assign.getAttackPoint());
     return *this;
-}
-
-// Static getters
-std::string FragTrap::getClassName() 
-{
-    return _c_name;
-}
-
-unsigned int FragTrap::getClassHitPoint() 
-{
-    return _c_hp;
-}
-
-unsigned int FragTrap::getClassEnergyPoint() 
-{
-    return _c_ep;
-}
-
-unsigned int FragTrap::getClassAttackPoint() 
-{
-    return _c_ap;
 }
 
 void FragTrap::highFivesGuys(void)

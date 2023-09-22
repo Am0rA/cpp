@@ -20,25 +20,19 @@ class ScavTrap : virtual public ClapTrap
 	public:
 		// Form
 		ScavTrap();
-		ScavTrap(std::string name);
+		ScavTrap(std::string _name);
 		ScavTrap(const ScavTrap &copy);
-		~ScavTrap();
+		virtual ~ScavTrap();
 		ScavTrap & operator=(const ScavTrap &assign);
 		// Member functions
 		void	guardGate(void);
 		void	attack(const std::string& target);
-
-		// Static getters
-		static std::string		getClassName(void);
-		static unsigned int		getClassHitPoint(void);
-		static unsigned int		getClassEnergyPoint(void);
-		static unsigned int		getClassAttackPoint(void);
 	private:
-		// Class attributes
-		static const std::string _c_name;
-		static const unsigned int _c_hp;
-		static const unsigned int _c_ep;
-		static const unsigned int _c_ap;
+	protected:
+		static const unsigned int DEFAULT_HP = 100;
+		static const unsigned int DEFAULT_EP = 50;
+		static const unsigned int DEFAULT_AP = 20;
+		static const std::string DEFAULT_NAME;
 };
 
 #endif

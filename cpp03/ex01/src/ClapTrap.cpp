@@ -12,43 +12,31 @@
 
 #include "ClapTrap.hpp"
 
-const std::string	ClapTrap::_c_name = "ClapTrap";
-const unsigned int	ClapTrap::_c_hp = 10;
-const unsigned int	ClapTrap::_c_ep = 10;
-const unsigned int	ClapTrap::_c_ap = 0;
+const std::string ClapTrap::DEFAULT_NAME = "ClapTrap";
 
 // Form
-
 ClapTrap::ClapTrap() : \
-	_name(ClapTrap::_c_name), \
-	_hp(ClapTrap::_c_hp), \
-	_ep(ClapTrap::_c_ep), \
-	_ap(ClapTrap::_c_ap)
+	_name(ClapTrap::DEFAULT_NAME), \
+	_hp(ClapTrap::DEFAULT_HP), \
+	_ep(ClapTrap::DEFAULT_EP), \
+	_ap(ClapTrap::DEFAULT_AP)
 {
-	std::cout << YELLOW "Default Constructor of ClapTrap called" DEFCOLOR << std::endl;
+	std::cout << YELLOW "A ClapTrap called " << ClapTrap::DEFAULT_NAME << " is constructed" DEFCOLOR << std::endl;
+}
+
+ClapTrap::ClapTrap(std::string _name) :
+	_name(_name), \
+	_hp(ClapTrap::DEFAULT_HP), \
+	_ep(ClapTrap::DEFAULT_EP), \
+	_ap(ClapTrap::DEFAULT_AP)
+{
+	std::cout << YELLOW "A ClapTrap called " << _name << " is constructed" DEFCOLOR << std::endl;
 }
 
 ClapTrap::ClapTrap(const ClapTrap &copy)
-    : _name(copy.getName()),
-      _hp(copy.getHitPoint()),
-      _ep(copy.getEnergyPoint()),
-      _ap(copy.getAttackPoint())
 {
-    std::cout << YELLOW "Copy Constructor of ClapTrap called" DEFCOLOR << std::endl;
-}
-
-ClapTrap::ClapTrap(std::string _name) : \
-	_name(_name), \
-	_hp(getClassHitPoint()), \
-	_ep(getClassEnergyPoint()), \
-	_ap(getClassAttackPoint())
-{
-	std::cout << YELLOW "Fields Constructor of ClapTrap called" DEFCOLOR << std::endl;
-}
-
-ClapTrap::~ClapTrap()
-{
-	std::cout << PURP "Destructor of ClapTrap called" DEFCOLOR << std::endl;
+    std::cout << YELLOW "A copy ClapTrap of " << copy.getName() << " is constructed" DEFCOLOR << std::endl;
+	*this = copy;
 }
 
 ClapTrap & ClapTrap::operator=(const ClapTrap &assign)
@@ -60,22 +48,9 @@ ClapTrap & ClapTrap::operator=(const ClapTrap &assign)
 	return *this;
 }
 
-// getters
-std::string ClapTrap::getName() const
+ClapTrap::~ClapTrap()
 {
-	return this->_name;
-}
-unsigned int ClapTrap::getHitPoint() const
-{
-	return this->_hp;
-}
-unsigned int ClapTrap::getEnergyPoint() const
-{
-	return this->_ep;
-}
-unsigned int ClapTrap::getAttackPoint() const
-{
-	return this->_ap;
+	std::cout << PURP "A ClapTrap called " << this->getName() << " is deconstructed" DEFCOLOR << std::endl;
 }
 
 //Setters
@@ -96,25 +71,22 @@ void ClapTrap::setAttackPoint(unsigned int attack_p)
 	this->_ap = attack_p;
 }
 
-// Static getters
-std::string ClapTrap::getClassName() 
+// getters
+std::string ClapTrap::getName() const
 {
-    return _c_name;
+	return this->_name;
 }
-
-unsigned int ClapTrap::getClassHitPoint() 
+unsigned int ClapTrap::getHitPoint() const
 {
-    return _c_hp;
+	return this->_hp;
 }
-
-unsigned int ClapTrap::getClassEnergyPoint() 
+unsigned int ClapTrap::getEnergyPoint() const
 {
-    return _c_ep;
+	return this->_ep;
 }
-
-unsigned int ClapTrap::getClassAttackPoint() 
+unsigned int ClapTrap::getAttackPoint() const
 {
-    return _c_ap;
+	return this->_ap;
 }
 
 // member functions

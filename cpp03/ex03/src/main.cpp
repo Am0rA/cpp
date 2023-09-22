@@ -43,7 +43,6 @@ int main()
 	attack_func(frog, ciguli);
 	frog.beRepaired(999);
 	frog.highFivesGuys();
-
     DiamondTrap diamond;
     diamond.whoAmI();
     attack_func(diamond, ciguli);

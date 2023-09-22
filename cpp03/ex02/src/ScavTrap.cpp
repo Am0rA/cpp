@@ -12,39 +12,34 @@
 
 #include "ScavTrap.hpp"
 
-const std::string	ScavTrap::_c_name = "ScavTrap";
-const unsigned int	ScavTrap::_c_hp = 100;
-const unsigned int	ScavTrap::_c_ep = 50;
-const unsigned int	ScavTrap::_c_ap = 20;
+const std::string ScavTrap::DEFAULT_NAME = "ScavTrap";
 
 ScavTrap::ScavTrap() :
-	ClapTrap(ScavTrap::_c_name)
+	ClapTrap(DEFAULT_NAME)
 {
-    std::cout << YELLOW "Default ScavTrap Constructor called" DEFCOLOR << "\n";
-    setHitPoint(ScavTrap::_c_hp);
-    setEnergyPoint(ScavTrap::_c_ep);
-    setAttackPoint(ScavTrap::_c_ap);
+	std::cout << YELLOW "A ScavTrap called " << ScavTrap::DEFAULT_NAME << " is constructed" DEFCOLOR << std::endl;
+    setHitPoint(DEFAULT_HP);
+    setEnergyPoint(DEFAULT_EP);
+    setAttackPoint(DEFAULT_AP);
 }
 
-ScavTrap::ScavTrap(std::string name) :
-	ClapTrap(name)
+ScavTrap::ScavTrap(std::string _name) : ClapTrap(_name)
 {
-    std::cout << YELLOW "ScavTrap Constructor called" DEFCOLOR << "\n";
-    setHitPoint(ScavTrap::_c_hp);
-    setEnergyPoint(ScavTrap::_c_ep);
-    setAttackPoint(ScavTrap::_c_ap);
+	std::cout << YELLOW "A ScavTrap called " << _name << " is constructed" DEFCOLOR << std::endl;
+    setHitPoint(DEFAULT_HP);
+    setEnergyPoint(DEFAULT_EP);
+    setAttackPoint(DEFAULT_AP);
 }
 
-ScavTrap::ScavTrap(const ScavTrap &copy) :
-	ClapTrap(copy)
+ScavTrap::ScavTrap(const ScavTrap &copy) : ClapTrap(copy)
 {
-    std::cout << YELLOW "ScavTrap Copy Constructor called" DEFCOLOR << std::endl;
+    std::cout << YELLOW "A copy ScavTrap of " << copy.getName() << " is constructed" DEFCOLOR << std::endl;
     *this = copy;
 }
 
 ScavTrap::~ScavTrap()
 {
-    std::cout << PURP "ScavTrap Destructor called" DEFCOLOR << "\n";
+	std::cout << PURP "A ScavTrap called " << this->getName() << " is deconstructed" DEFCOLOR << std::endl;
 }
 
 ScavTrap & ScavTrap::operator=(const ScavTrap &assign)
@@ -56,28 +51,6 @@ ScavTrap & ScavTrap::operator=(const ScavTrap &assign)
     return *this;
 }
 
-// Static getters
-std::string ScavTrap::getClassName() 
-{
-    return _c_name;
-}
-
-unsigned int ScavTrap::getClassHitPoint() 
-{
-    return _c_hp;
-}
-
-unsigned int ScavTrap::getClassEnergyPoint() 
-{
-    return _c_ep;
-}
-
-unsigned int ScavTrap::getClassAttackPoint() 
-{
-    return _c_ap;
-}
-
-// Member functions
 void ScavTrap::guardGate()
 {
     std::cout << YELLOW << getName() << DEFCOLOR << " is now in Gate keeper mode." << "\n";

@@ -12,18 +12,18 @@
 
 #include "DiamondTrap.hpp"
 
-const std::string	DiamondTrap::_c_name = "DiamondTrap";
+const std::string DiamondTrap::DEFAULT_NAME = "DiamondTrap";
 
 DiamondTrap::DiamondTrap() :
 	ClapTrap("diamond_clap_trap"),
     FragTrap("diamond_frag_trap"),
 	ScavTrap("diamond_scav_trap")
 {
-    std::cout << YELLOW "A DiamondTrap called " BLUE "DiamondTrap" YELLOW " is born!\n" DEFCOLOR;
-	this->_name = getClassName();
-	this->setAttackPoint(FragTrap::getClassAttackPoint());
-	this->setEnergyPoint(ScavTrap::getClassEnergyPoint());
-	this->setHitPoint(FragTrap::getClassHitPoint());
+	std::cout << YELLOW "A DiamondTrap called " << DiamondTrap::DEFAULT_NAME << " is constructed" DEFCOLOR << std::endl;
+	this->setName(DiamondTrap::DEFAULT_NAME);
+	this->setAttackPoint(DiamondTrap::DEFAULT_AP);
+	this->setEnergyPoint(DiamondTrap::DEFAULT_EP);
+	this->setHitPoint(DiamondTrap::DEFAULT_HP);
 }
 
 DiamondTrap::DiamondTrap(std::string name) :
@@ -31,11 +31,11 @@ DiamondTrap::DiamondTrap(std::string name) :
     FragTrap(name + "_frag_trap"),
 	ScavTrap(name + "_scav_trap")
 {
-    std::cout << YELLOW "A DiamondTrap called " BLUE << name << YELLOW " is born!\n" DEFCOLOR;
+	std::cout << YELLOW "A DiamondTrap called " << _name << " is constructed" DEFCOLOR << std::endl;
     this->_name = name;
-	this->setAttackPoint(FragTrap::getClassAttackPoint());
-	this->setEnergyPoint(ScavTrap::getClassEnergyPoint());
-	this->setHitPoint(FragTrap::getClassHitPoint());
+	this->setAttackPoint(DiamondTrap::DEFAULT_AP);
+	this->setEnergyPoint(DiamondTrap::DEFAULT_EP);
+	this->setHitPoint(DiamondTrap::DEFAULT_HP);
 }
 
 DiamondTrap::DiamondTrap(DiamondTrap const &copy) :
@@ -43,13 +43,13 @@ DiamondTrap::DiamondTrap(DiamondTrap const &copy) :
     FragTrap(copy._name + "_frag_trap"), 
 	ScavTrap(copy._name + "_scav_trap")
 {
-	std::cout << YELLOW "Copy constructor of DiamondTrap is called and " << copy.getClassName() << " is copied\n" DEFCOLOR;
+    std::cout << YELLOW "A copy DiamondTrap of " << copy.getName() << " is constructed" DEFCOLOR << std::endl;
     *this = copy;
 }
 
 DiamondTrap::~DiamondTrap()
 {
-    std::cout << PURP "DiamondTrap " << this->_name << " is a coal now...\n" DEFCOLOR;
+	std::cout << PURP "A DiamondTrap called " << this->getName() << " is deconstructed" DEFCOLOR << std::endl;
 }
 
 DiamondTrap& DiamondTrap::operator=(const DiamondTrap &other)
@@ -59,27 +59,6 @@ DiamondTrap& DiamondTrap::operator=(const DiamondTrap &other)
 	this->setEnergyPoint(other.getEnergyPoint());
 	this->setHitPoint(other.getHitPoint());
     return (*this);
-}
-
-// Static getters
-std::string DiamondTrap::getClassName() 
-{
-    return (_c_name);
-}
-
-unsigned int DiamondTrap::getClassHitPoint() 
-{
-    return (DiamondTrap::getClassHitPoint());
-}
-
-unsigned int DiamondTrap::getClassEnergyPoint() 
-{
-	return (ScavTrap::getClassEnergyPoint());
-}
-
-unsigned int DiamondTrap::getClassAttackPoint() 
-{	
-	return (DiamondTrap::getClassAttackPoint());
 }
 
 // Member functions

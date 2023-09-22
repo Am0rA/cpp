@@ -20,23 +20,18 @@ class FragTrap : virtual public ClapTrap
 	public:
 		// Form
 		FragTrap();
-		FragTrap(std::string name);
+		FragTrap(std::string _name);
 		FragTrap(const FragTrap &copy);
-		~FragTrap();
+		virtual ~FragTrap();
 		FragTrap & operator=(const FragTrap &assign);
 		// Member functions
 		void	highFivesGuys(void);
-		// Static getters
-		static std::string		getClassName(void);
-		static unsigned int		getClassHitPoint(void);
-		static unsigned int		getClassEnergyPoint(void);
-		static unsigned int		getClassAttackPoint(void);
 	private:
-		// Class attributes
-		static const std::string _c_name;
-		static const unsigned int _c_hp;
-		static const unsigned int _c_ep;
-		static const unsigned int _c_ap;
+	protected:
+		static const unsigned int DEFAULT_HP = 100;
+		static const unsigned int DEFAULT_EP = 100;
+		static const unsigned int DEFAULT_AP = 30;
+		static const std::string DEFAULT_NAME;
 };
 
 #endif
