@@ -1,35 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   Animal.hpp                                         :+:    :+:            */
+/*   Cat.hpp                                            :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: itopchu <itopchu@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2023/09/20 18:32:42 by itopchu       #+#    #+#                 */
-/*   Updated: 2023/09/20 18:32:42 by itopchu       ########   odam.nl         */
+/*   Created: 2023/09/20 21:44:25 by itopchu       #+#    #+#                 */
+/*   Updated: 2023/09/20 21:44:25 by itopchu       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ANIMAL_HPP
-# define ANIMAL_HPP
+#ifndef CAT_HPP
+# define CAT_HPP
 
-# include "main.hpp"
+#include "Animal.hpp"
 
-class Animal
+class Cat : public Animal
 {
-	protected:
-		std::string _type;
-		void test() { std::cout << "Test line ANIMAL" << std::endl;};
 	public:
-		// Form
-		Animal(void);
-		Animal(const std::string type);
-		Animal(const Animal& copy);
-		Animal& operator=(const Animal& assign);
-		virtual ~Animal(void);
+		//Form
+		Cat(void);
+		~Cat(void);
 		// Member functions
-		std::string		getType(void) const;
-		virtual void	makeSound(void) const;
+		void makeSound() const;
 	private:
+	protected:
 };
+
 #endif

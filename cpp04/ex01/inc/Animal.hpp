@@ -19,7 +19,6 @@ class Animal
 {
 	protected:
 		std::string _type;
-		void test() { std::cout << "Test line ANIMAL" << std::endl;};
 	public:
 		// Form
 		Animal(void);
@@ -28,8 +27,9 @@ class Animal
 		Animal& operator=(const Animal& assign);
 		virtual ~Animal(void);
 		// Member functions
-		std::string		getType(void) const;
 		virtual void	makeSound(void) const;
+		std::string		getType(void) const;
 	private:
 };
+
 #endif

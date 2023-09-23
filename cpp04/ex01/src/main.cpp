@@ -43,6 +43,7 @@ int	main(void)
 	putMessage(BLUE, wrongCat->getType(), 1);
 	wrongCat->makeSound();
 	wrongAnimal->makeSound();
+
 	delete wrongCat, delete wrongAnimal;
 	return (0);
 }

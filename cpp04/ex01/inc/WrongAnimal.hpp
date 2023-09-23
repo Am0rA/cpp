@@ -1,35 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   Animal.hpp                                         :+:    :+:            */
+/*   WrongAnimal.hpp                                    :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: itopchu <itopchu@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2023/09/20 18:32:42 by itopchu       #+#    #+#                 */
-/*   Updated: 2023/09/20 18:32:42 by itopchu       ########   odam.nl         */
+/*   Created: 2023/09/20 22:07:47 by itopchu       #+#    #+#                 */
+/*   Updated: 2023/09/20 22:07:47 by itopchu       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ANIMAL_HPP
-# define ANIMAL_HPP
+#ifndef WRONGANIMAL_HPP
+# define WRONGANIMAL_HPP
 
 # include "main.hpp"
 
-class Animal
+class WrongAnimal
 {
 	protected:
 		std::string _type;
-		void test() { std::cout << "Test line ANIMAL" << std::endl;};
 	public:
 		// Form
-		Animal(void);
-		Animal(const std::string type);
-		Animal(const Animal& copy);
-		Animal& operator=(const Animal& assign);
-		virtual ~Animal(void);
+		WrongAnimal(void);
+		WrongAnimal(const std::string type);
+		WrongAnimal(const WrongAnimal& copy);
+		~WrongAnimal(void);
+		WrongAnimal& operator=(const WrongAnimal& assign);
 		// Member functions
-		std::string		getType(void) const;
-		virtual void	makeSound(void) const;
+		void		makeSound(void) const;
+		std::string	getType(void) const;
 	private:
+
 };
+
 #endif
