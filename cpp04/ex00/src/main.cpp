@@ -39,10 +39,13 @@ int	main(void)
 	putMessage(RED, "------------Wrong part------------", 1);
 	const WrongAnimal*	wrongAnimal = new WrongAnimal();
 	const WrongAnimal*	wrongCat = new WrongCat();
+	const WrongCat*	wrongCaat = new WrongCat();
 	putMessage(BLUE, wrongAnimal->getType(), 1);
+	putMessage(BLUE, wrongCaat->getType(), 1);
 	putMessage(BLUE, wrongCat->getType(), 1);
-	wrongCat->makeSound();
 	wrongAnimal->makeSound();
+	wrongCaat->makeSound();
+	wrongCat->makeSound();
 	delete wrongCat, delete wrongAnimal;
 	return (0);
 }
