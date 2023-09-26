@@ -15,11 +15,35 @@
 Dog::Dog() :
 	Animal("Dog")
 {
+	this->brain = new Brain();
 	putMessage(YELLOW, "Default constructor of Dog is called", 1);
+}
+
+Dog::Dog(const Dog &assign)
+{
+	if (this != &assign)
+	{
+		delete this->brain;
+		this->brain = new Brain();
+		for (int i = 0; i < 100; i++)
+			this->brain->ideas[i] = assign.brain->ideas[i];
+	}
+	this->_type = assign.getType();
+	putMessage(YELLOW, "A copy of ", 0);
+	putMessage(YELLOW, this->getType(), 0);
+	putMessage(YELLOW, " is created", 1);
+	*this = assign;
+}
+
+Dog & Dog::operator=(const Dog &assign)
+{
+	this->_type = assign.getType();
+	return *this;
 }
 
 Dog::~Dog()
 {
+	delete brain;
 	putMessage(PURP, "Default destructor of Dog is called", 1);
 }
 
