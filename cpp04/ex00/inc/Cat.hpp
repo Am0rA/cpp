@@ -13,13 +13,15 @@
 #ifndef CAT_HPP
 # define CAT_HPP
 
-#include "Animal.hpp"
+# include "Animal.hpp"
 
 class Cat : public Animal
 {
 	public:
 		//Form
 		Cat(void);
+		Cat(const Cat &assign);
+		Cat &operator=(const Cat &assign);
 		~Cat(void);
 		// Member functions
 		void makeSound() const;

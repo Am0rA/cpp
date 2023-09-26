@@ -18,6 +18,20 @@ Cat::Cat() :
 	putMessage(YELLOW, "Default constructor of Cat is called", 1);
 }
 
+Cat::Cat(const Cat &assign)
+{
+	putMessage(YELLOW, "A copy of ", 0);
+	putMessage(YELLOW, this->getType(), 0);
+	putMessage(YELLOW, " is created", 1);
+	*this = assign;
+}
+
+Cat & Cat::operator=(const Cat &assign)
+{
+	this->_type = assign.getType();
+	return *this;
+}
+
 Cat::~Cat()
 {
 	putMessage(PURP, "Default destructor of Cat is called", 1);

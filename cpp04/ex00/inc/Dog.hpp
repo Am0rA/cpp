@@ -13,13 +13,15 @@
 #ifndef DOG_HPP
 # define DOG_HPP
 
-#include "Animal.hpp"
+# include "Animal.hpp"
 
 class Dog : public Animal
 {
 	public:
 		//Form
 		Dog(void);
+		Dog(const Dog &assign);
+		Dog &operator=(const Dog &assign);
 		~Dog(void);
 		// Member functions
 		void makeSound() const;
