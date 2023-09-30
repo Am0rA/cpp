@@ -23,17 +23,17 @@ void	putMessage(const char* color, const std::string& message, int newline)
 		std::cout << std::endl;
 }
 
-int	main(void)
+int main()
 {
-	const int size = 10;
-    Animal* animals[size];
-    for (int i = 0; i < size / 2; i++)
-        animals[i] = new Dog();
-    for (int i = size / 2; i < size; i++)
-        animals[i] = new Cat();
-    for (int i = 0; i < size; i++)
-	{
-        delete animals[i];
-	}
-	return (0);
+	std::cout << "--------------- Animal ---------------" << std::endl;
+
+	//const Animal* meta = new Animal(); //Shouldn't compile
+	// std::cout << "j : " RED "(" << j->getType() << ")" DEFCOLOR << " ";
+	// meta->makeSound();
+    const Animal* i = new Cat();
+    const Animal* j = new Dog();
+	std::cout << "i : " RED "(" << i->getType() << ")" DEFCOLOR << " ";
+	i->makeSound();
+	std::cout << "j : " RED "(" << j->getType() << ")" DEFCOLOR << " ";
+	j->makeSound();
 }

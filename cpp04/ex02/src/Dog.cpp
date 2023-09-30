@@ -24,8 +24,7 @@ Dog::Dog(const Dog &assign) :
 {
 	if (this != &assign)
 	{
-		if (this->brain)
-			delete this->brain;
+		delete this->brain;
 		this->brain = new Brain();
 		for (int i = 0; i < 100; i++)
 			this->brain->ideas[i] = assign.brain->ideas[i];
@@ -44,8 +43,8 @@ Dog & Dog::operator=(const Dog &assign)
 
 Dog::~Dog()
 {
-	if (this->brain)
-		delete brain;
+	
+	delete brain;
 	putMessage(PURP, "Default destructor of Dog is called", 1);
 }
 

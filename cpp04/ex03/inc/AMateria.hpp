@@ -1,32 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   Brain.hpp                                          :+:    :+:            */
+/*   AMateria.hpp                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: itopchu <itopchu@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2023/09/25 21:41:23 by itopchu       #+#    #+#                 */
-/*   Updated: 2023/09/25 21:41:23 by itopchu       ########   odam.nl         */
+/*   Created: 2023/09/27 11:03:33 by itopchu       #+#    #+#                 */
+/*   Updated: 2023/09/27 11:03:33 by itopchu       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BRAIN_HPP
-# define BRAIN_HPP
+#ifndef AMATERIA_HPP
+# define AMATERIA_HPP
 
 # include "main.hpp"
-# include <sstream>
+class ICharacter;
 
-class Brain
+class AMateria
 {
-	public:
-		// Form
-		Brain(void);
-		Brain(const Brain& copy);
-		~Brain(void);
-		Brain& operator=(const Brain& assign);
-		std::string	ideas[100];
 	protected:
-	private:
+	    std::string _type;
+
+	public:
+	    AMateria(std::string const & type) : _type(type) {}
+	    virtual ~AMateria() {}
+
+	    std::string const & getType() const { return _type; }
+	    virtual AMateria* clone() const = 0;
+	    virtual void use(ICharacter& target);
 };
 
 #endif

@@ -1,32 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   Brain.hpp                                          :+:    :+:            */
+/*   WrongCat.hpp                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: itopchu <itopchu@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2023/09/25 21:41:23 by itopchu       #+#    #+#                 */
-/*   Updated: 2023/09/25 21:41:23 by itopchu       ########   odam.nl         */
+/*   Created: 2023/09/20 22:15:13 by itopchu       #+#    #+#                 */
+/*   Updated: 2023/09/20 22:15:13 by itopchu       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BRAIN_HPP
-# define BRAIN_HPP
+#ifndef WRONGCAT_HPP
+#define WRONGCAT_HPP
 
-# include "main.hpp"
-# include <sstream>
+#include "WrongAnimal.hpp"
 
-class Brain
+class WrongCat : public WrongAnimal
 {
 	public:
-		// Form
-		Brain(void);
-		Brain(const Brain& copy);
-		~Brain(void);
-		Brain& operator=(const Brain& assign);
-		std::string	ideas[100];
-	protected:
+		//Form
+		WrongCat(void);
+		~WrongCat(void);
+		// Member functions
+		void   makeSound(void) const;
 	private:
+	protected:
 };
 
 #endif

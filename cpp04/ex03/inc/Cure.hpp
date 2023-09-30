@@ -1,32 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   Brain.hpp                                          :+:    :+:            */
+/*   Cure.hpp                                           :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: itopchu <itopchu@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2023/09/25 21:41:23 by itopchu       #+#    #+#                 */
-/*   Updated: 2023/09/25 21:41:23 by itopchu       ########   odam.nl         */
+/*   Created: 2023/09/29 23:14:03 by itopchu       #+#    #+#                 */
+/*   Updated: 2023/09/29 23:14:03 by itopchu       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BRAIN_HPP
-# define BRAIN_HPP
+#ifndef CURE_HPP
+# define CURE_HPP
 
-# include "main.hpp"
-# include <sstream>
+# include "AMateria.hpp"
 
-class Brain
-{
+class Cure : public AMateria {
 	public:
-		// Form
-		Brain(void);
-		Brain(const Brain& copy);
-		~Brain(void);
-		Brain& operator=(const Brain& assign);
-		std::string	ideas[100];
-	protected:
-	private:
+		Cure() : AMateria("cure") {}
+    	virtual ~Cure() {}
+    	AMateria* clone() const { return new Cure(); }
+    	void use(ICharacter& target);
 };
 
 #endif

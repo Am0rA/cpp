@@ -19,16 +19,17 @@ Cat::Cat() :
 	putMessage(YELLOW, "Default constructor of Cat is called", 1);
 }
 
-Cat::Cat(const Cat &assign)
+Cat::Cat(const Cat &assign) :
+	Animal(assign.getType())
 {
 	if (this != &assign)
 	{
-		delete this->brain;
+		if (this->brain)
+			delete this->brain;
 		this->brain = new Brain();
 		for (int i = 0; i < 100; i++)
 			this->brain->ideas[i] = assign.brain->ideas[i];
 	}
-	this->_type = assign.getType();
 	putMessage(YELLOW, "A copy of ", 0);
 	putMessage(YELLOW, this->getType(), 0);
 	putMessage(YELLOW, " is created", 1);
@@ -43,7 +44,8 @@ Cat & Cat::operator=(const Cat &assign)
 
 Cat::~Cat()
 {
-	delete brain;
+	if (brain)
+		delete brain;
 	putMessage(PURP, "Default destructor of Cat is called", 1);
 }
 

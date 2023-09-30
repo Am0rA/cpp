@@ -18,7 +18,8 @@ Cat::Cat() :
 	putMessage(YELLOW, "Default constructor of Cat is called", 1);
 }
 
-Cat::Cat(const Cat &assign)
+Cat::Cat(const Cat &assign) :
+	Animal(assign.getType())
 {
 	putMessage(YELLOW, "A copy of ", 0);
 	putMessage(YELLOW, this->getType(), 0);

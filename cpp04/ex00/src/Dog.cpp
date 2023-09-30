@@ -18,7 +18,8 @@ Dog::Dog() :
 	putMessage(YELLOW, "Default constructor of Dog is called", 1);
 }
 
-Dog::Dog(const Dog &assign)
+Dog::Dog(const Dog &assign) :
+	Animal(assign.getType())
 {
 	putMessage(YELLOW, "A copy of ", 0);
 	putMessage(YELLOW, this->getType(), 0);

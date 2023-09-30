@@ -1,32 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   Brain.hpp                                          :+:    :+:            */
+/*   WrongAnimal.hpp                                    :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: itopchu <itopchu@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2023/09/25 21:41:23 by itopchu       #+#    #+#                 */
-/*   Updated: 2023/09/25 21:41:23 by itopchu       ########   odam.nl         */
+/*   Created: 2023/09/20 22:07:47 by itopchu       #+#    #+#                 */
+/*   Updated: 2023/09/20 22:07:47 by itopchu       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BRAIN_HPP
-# define BRAIN_HPP
+#ifndef WRONGANIMAL_HPP
+# define WRONGANIMAL_HPP
 
 # include "main.hpp"
-# include <sstream>
 
-class Brain
+class WrongAnimal
 {
+	protected:
+		std::string _type;
 	public:
 		// Form
-		Brain(void);
-		Brain(const Brain& copy);
-		~Brain(void);
-		Brain& operator=(const Brain& assign);
-		std::string	ideas[100];
-	protected:
+		WrongAnimal(void);
+		WrongAnimal(const std::string type);
+		WrongAnimal(const WrongAnimal& copy);
+		~WrongAnimal(void);
+		WrongAnimal& operator=(const WrongAnimal& assign);
+		// Member functions
+		void		makeSound(void) const;
+		std::string	getType(void) const;
 	private:
+
 };
 
 #endif

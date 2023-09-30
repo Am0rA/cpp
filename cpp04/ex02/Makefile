@@ -5,7 +5,7 @@
 # │              CXX part              │
 # ╰────────────────────────────────────╯
 CPP 		:= c++
-NAME		= animalBrain
+NAME		= abstractAnimal
 DIR_OBJ		= ./obj
 DIR_INC		= ./inc
 DIR_SRC		= ./src

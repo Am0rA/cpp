@@ -1,32 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   Brain.hpp                                          :+:    :+:            */
+/*   IMateriaSource.hpp                                 :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: itopchu <itopchu@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2023/09/25 21:41:23 by itopchu       #+#    #+#                 */
-/*   Updated: 2023/09/25 21:41:23 by itopchu       ########   odam.nl         */
+/*   Created: 2023/09/29 22:56:26 by itopchu       #+#    #+#                 */
+/*   Updated: 2023/09/29 22:56:26 by itopchu       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BRAIN_HPP
-# define BRAIN_HPP
+#ifndef IMATERIASOURCE_HPP
+# define IMATERIASOURCE_HPP
+# include "AMateria.hpp"
 
-# include "main.hpp"
-# include <sstream>
-
-class Brain
+class IMateriaSource
 {
 	public:
-		// Form
-		Brain(void);
-		Brain(const Brain& copy);
-		~Brain(void);
-		Brain& operator=(const Brain& assign);
-		std::string	ideas[100];
-	protected:
-	private:
+		virtual ~IMateriaSource() {}
+		virtual void	learnMateria(Amateria*) = 0;
+		virtual	AMateria* createMateria(std::string const &type) = 0;
 };
 
 #endif

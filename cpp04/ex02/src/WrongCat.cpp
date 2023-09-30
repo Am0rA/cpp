@@ -1,32 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   Brain.hpp                                          :+:    :+:            */
+/*   WrongCat.cpp                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: itopchu <itopchu@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2023/09/25 21:41:23 by itopchu       #+#    #+#                 */
-/*   Updated: 2023/09/25 21:41:23 by itopchu       ########   odam.nl         */
+/*   Created: 2023/09/20 22:16:03 by itopchu       #+#    #+#                 */
+/*   Updated: 2023/09/20 22:16:03 by itopchu       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BRAIN_HPP
-# define BRAIN_HPP
+#include "WrongCat.hpp"
 
-# include "main.hpp"
-# include <sstream>
-
-class Brain
+WrongCat::WrongCat() :
+	WrongAnimal("WrongCat")
 {
-	public:
-		// Form
-		Brain(void);
-		Brain(const Brain& copy);
-		~Brain(void);
-		Brain& operator=(const Brain& assign);
-		std::string	ideas[100];
-	protected:
-	private:
-};
+	putMessage(YELLOW, "Default constructor of WrongCat is called", 1);
+}
 
-#endif
+WrongCat::~WrongCat()
+{
+	putMessage(PURP, "Default destructor of WrongCat is called", 1);
+}
+
+void WrongCat::makeSound() const
+{
+	putMessage(L_BLUE, "I say Mihhryav not Meow!", 1);
+}
