@@ -5,8 +5,8 @@
 /*                                                     +:+                    */
 /*   By: itopchu <itopchu@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2023/09/29 23:17:08 by itopchu       #+#    #+#                 */
-/*   Updated: 2023/09/29 23:17:08 by itopchu       ########   odam.nl         */
+/*   Created: 2023/09/30 20:05:54 by itopchu       #+#    #+#                 */
+/*   Updated: 2023/09/30 20:05:54 by itopchu       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,16 @@
 class MateriaSource : public IMateriaSource
 {
 	private:
-		std::array<AMateria*, 4> _materias;
-
+		AMateria*	mp__materias[4];
 	public:
-		MateriaSource() : _materias{nullptr, nullptr, nullptr, nullptr} {}
-		virtual ~MateriaSource();
-
-		void learnMateria(AMateria* m);
-		AMateria* createMateria(std::string const & type);
+		// Form
+		MateriaSource(void);
+		~MateriaSource(void);
+		MateriaSource(MateriaSource const & copy);
+		MateriaSource& operator=(MateriaSource const & assign);
+		// Subject part
+		void	learnMateria(AMateria* m);
+		AMateria*	createMateria(std::string const & type);
 };
 
 #endif

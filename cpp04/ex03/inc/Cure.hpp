@@ -5,22 +5,28 @@
 /*                                                     +:+                    */
 /*   By: itopchu <itopchu@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2023/09/29 23:14:03 by itopchu       #+#    #+#                 */
-/*   Updated: 2023/09/29 23:14:03 by itopchu       ########   odam.nl         */
+/*   Created: 2023/09/30 19:28:17 by itopchu       #+#    #+#                 */
+/*   Updated: 2023/09/30 19:28:17 by itopchu       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CURE_HPP
 # define CURE_HPP
-
 # include "AMateria.hpp"
 
-class Cure : public AMateria {
+class Cure : public AMateria
+{
+	private:
+		/* data */
 	public:
-		Cure() : AMateria("cure") {}
-    	virtual ~Cure() {}
-    	AMateria* clone() const { return new Cure(); }
-    	void use(ICharacter& target);
+		// Form
+		Cure();
+		~Cure();
+		Cure(Cure const & copy);
+		Cure& operator=(Cure const & assign);
+		// Subject part
+		AMateria*	clone(void) const;
+		void	use(ICharacter& target);
 };
 
 #endif

@@ -5,28 +5,33 @@
 /*                                                     +:+                    */
 /*   By: itopchu <itopchu@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2023/09/29 23:15:04 by itopchu       #+#    #+#                 */
-/*   Updated: 2023/09/29 23:15:04 by itopchu       ########   odam.nl         */
+/*   Created: 2023/09/30 19:56:40 by itopchu       #+#    #+#                 */
+/*   Updated: 2023/09/30 19:56:40 by itopchu       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CHARACTER_HPP
 # define CHARACTER_HPP
+# include "AMateria.hpp"
+# include "ICharacter.hpp"
+
 class Character : public ICharacter
 {
 	private:
-    	std::string _name;
-    	std::array<AMateria*, 4> _inventory;
-
+		AMateria*	mp__inventory[4];
+		std::string	m__name;
 	public:
-    	Character(std::string const & name) : _name(name), _inventory{nullptr, nullptr, nullptr, nullptr} {}
-    	Character(Character const & other);
-    	Character & operator=(Character const & other);
-    	virtual ~Character();
-    	std::string const & getName() const { return _name; }
-    	void equip(AMateria* m);
-    	void unequip(int idx);
-    	void use(int idx, ICharacter& target);
+		// Form
+		Character(void);
+		~Character(void);
+		Character(Character const & copy);
+		Character& operator=(Character const & assign);
+		// Subject Part
+		Character(std::string const & name);
+		std::string const & getName(void) const;
+		void	equip(AMateria* m);
+		void	unequip(int idx);
+		void	use(int idx, ICharacter& target);
 };
 
 #endif

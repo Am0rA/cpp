@@ -5,7 +5,7 @@
 # │              CXX part              │
 # ╰────────────────────────────────────╯
 CPP 		:= c++
-NAME		= abstractAnimal
+NAME		= amateria
 DIR_OBJ		= ./obj
 DIR_INC		= ./inc
 DIR_SRC		= ./src
@@ -18,12 +18,11 @@ CPPFLAGS	+= -MMD -MP
 LFLAGS		:= -L$(DIR_INC)
 RM			= rm -rf
 # **************************************************************************** #
-SRC_EXEC	= $(DIR_SRC)/Animal.cpp \
-			  $(DIR_SRC)/Cat.cpp \
-			  $(DIR_SRC)/Dog.cpp \
-			  $(DIR_SRC)/WrongAnimal.cpp \
-			  $(DIR_SRC)/WrongCat.cpp \
-			  $(DIR_SRC)/Brain.cpp \
+SRC_EXEC	= $(DIR_SRC)/AMateria.cpp \
+			  $(DIR_SRC)/Character.cpp \
+			  $(DIR_SRC)/Cure.cpp \
+			  $(DIR_SRC)/Ice.cpp \
+			  $(DIR_SRC)/MateriaSource.cpp \
 			  $(DIR_SRC)/main.cpp
 # **************************************************************************** #
 SRCS		= $(SRC_EXEC)
