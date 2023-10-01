@@ -61,6 +61,8 @@ void	MateriaSource::learnMateria(AMateria* m)
 		i++;
 	if (i < 4)
 		mp__materias[i] = m;
+	else
+		delete (m);
 }
 
 AMateria*	MateriaSource::createMateria(std::string const & type)
