@@ -23,7 +23,7 @@ static float area(const Point p1, const Point p2, const Point p3)
 			+ ( p2.getX().toFloat() * ( p3.getY().toFloat() - p1.getY().toFloat() ) )
 			+ ( p3.getX().toFloat() * ( p1.getY().toFloat() - p2.getY().toFloat() ) ))
 			/ 2;
-	return (area >= 0 ? area : -1);
+	return (area >= 0 ? area : area * -1);
 }
 
 static bool bsp(const Point a, const Point b, const Point c, const Point point)
