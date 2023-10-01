@@ -70,12 +70,17 @@ void	Character::equip(AMateria* m)
 		i++;
 	if (i < 4)
 		mp__inventory[i] = m;
+	if (i >= 4)
+		delete m;
 }
 
 void	Character::unequip(int idx)
 {
 	if (idx >= 0 && idx < 4)
+	{
+		delete mp__inventory[idx];
 		mp__inventory[idx] = NULL;
+	}
 }
 
 void	Character::use(int idx, ICharacter& target)

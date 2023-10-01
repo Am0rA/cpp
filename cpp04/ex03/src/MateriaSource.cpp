@@ -31,6 +31,7 @@ MateriaSource::MateriaSource(MateriaSource const & copy)
 	putMessage(YELLOW, "Copy Constructor of MateriaSource is called", 1);
     for(int i = 0; i < 4; ++i)
 	{
+		delete mp__materias[i];
 		mp__materias[i] = NULL;
 		if (copy.mp__materias[i])
 			mp__materias[i] = copy.mp__materias[i]->clone();
@@ -58,8 +59,9 @@ void	MateriaSource::learnMateria(AMateria* m)
 	int	i = 0;
 	while (i < 4 && mp__materias[i])
 		i++;
-	if (i < 4 && !mp__materias[i])
+	if (i < 4)
 		mp__materias[i] = m->clone();
+	delete m;
 }
 
 AMateria*	MateriaSource::createMateria(std::string const & type)

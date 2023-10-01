@@ -13,7 +13,7 @@ DIR_SRC		= ./src
 IFLAGS		:= -I$(DIR_INC)
 CPPFLAGS	= -Wall -Wextra -Werror -std=c++98
 CPPFLAGS	+= -MMD -MP
-# CPPFLAGS	+= -g3 #-fsanitize=address
+CPPFLAGS	+= -g3 -fsanitize=address
 # CPPFLAGS	+= -arch x86_64
 LFLAGS		:= -L$(DIR_INC)
 RM			= rm -rf
