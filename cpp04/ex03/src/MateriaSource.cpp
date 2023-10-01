@@ -60,8 +60,7 @@ void	MateriaSource::learnMateria(AMateria* m)
 	while (i < 4 && mp__materias[i])
 		i++;
 	if (i < 4)
-		mp__materias[i] = m->clone();
-	delete m;
+		mp__materias[i] = m;
 }
 
 AMateria*	MateriaSource::createMateria(std::string const & type)
