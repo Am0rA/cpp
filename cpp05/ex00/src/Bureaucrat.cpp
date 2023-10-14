@@ -44,6 +44,10 @@ Bureaucrat::Bureaucrat(std::string const &name, int const &grade) :
 	m__name(name),
 	m__grade(grade)
 {
+	if (m__grade < 1)
+		throw GradeTooHighException(m__grade);
+	if (m__grade > 150)
+		throw GradeTooLowException(m__grade);
 	putMessage(YELLOW, "Name constructor of Bureaucrat is called", 1);
 	ms__amount++;
 }
