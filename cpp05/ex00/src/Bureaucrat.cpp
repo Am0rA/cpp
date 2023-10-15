@@ -45,9 +45,9 @@ Bureaucrat::Bureaucrat(std::string const &name, int const &grade) :
 	m__grade(grade)
 {
 	if (m__grade < 1)
-		throw GradeTooHighException(m__grade);
+		throw GradeTooHighException();
 	if (m__grade > 150)
-		throw GradeTooLowException(m__grade);
+		throw GradeTooLowException();
 	putMessage(YELLOW, "Name constructor of Bureaucrat is called", 1);
 	ms__amount++;
 }
@@ -71,47 +71,23 @@ std::ostream &operator<<(std::ostream &outs, Bureaucrat const &bureau)
 void	Bureaucrat::increaseGrade(int amount)
 {
 	if (this->m__grade - amount < 1)
-		throw GradeTooHighException(amount);
+		throw GradeTooHighException();
 	m__grade -= amount;
 }
 
 void	Bureaucrat::decreaseGrade(int amount)
 {
 	if (this->m__grade + amount > 150)
-		throw GradeTooLowException(amount);
+		throw GradeTooLowException();
 	m__grade += amount;
-}
-
-Bureaucrat::GradeTooHighException::GradeTooHighException(int amount)
-{
-	std::stringstream converter;
-	converter << amount;
-	message = "You can't increase with " + converter.str();
-}
-
-Bureaucrat::GradeTooLowException::GradeTooLowException(int amount)
-{
-	std::stringstream converter;
-	converter << amount;
-	message = "You can't decrease with " + converter.str();
-}
-
-Bureaucrat::GradeTooLowException::~GradeTooLowException() throw()
-{
-
-}
-
-Bureaucrat::GradeTooHighException::~GradeTooHighException() throw()
-{
-
 }
 
 const char*	Bureaucrat::GradeTooHighException::what() const throw()
 {
-	return message.c_str();
+	return "Grades can't be higher than 1.";
 }
 
 const char*	Bureaucrat::GradeTooLowException::what() const throw()
 {
-	return message.c_str();
+	return "Grades can't be lower than 150.";
 }

@@ -13,14 +13,7 @@
 #ifndef BUREAUCRAT_HPP
 # define BUREAUCRAT_HPP
 
-# define RED "\e[1;31m"
-# define BLUE "\e[1;34m"
-# define GREEN "\e[1;32m"
-# define YELLOW "\e[0;33m"
-# define PURP "\e[0;35m"
-# define L_BLUE "\e[1;36m"
-# define DEFCOLOR "\033[0m"
-# include <iostream>
+# include "main.hpp"
 # include <string>
 # include <sstream>
 
@@ -45,20 +38,12 @@ class Bureaucrat
 		// Exceptions
 		class GradeTooLowException : public std::exception
 		{
-			private:
-				std::string message;
 			public:
-				GradeTooLowException(int amount);
-				virtual ~GradeTooLowException() throw();
 				virtual const char	*what() const throw();
 		};
 		class GradeTooHighException : public std::exception
 		{
-			private:
-				std::string message;
 			public:
-				GradeTooHighException(int amount);
-				virtual ~GradeTooHighException() throw();
 				virtual const char	*what() const throw();
 		};
 };
