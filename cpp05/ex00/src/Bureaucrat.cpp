@@ -26,7 +26,9 @@ Bureaucrat::~Bureaucrat(void)
 {
 	putMessage(PURP, "Default destructor of Bureaucrat is called", 1);
 }
-Bureaucrat::Bureaucrat(Bureaucrat const & copy)
+Bureaucrat::Bureaucrat(Bureaucrat const & copy) :
+	m__name(copy.getName()),
+	m__grade(copy.getGrade())
 {
 	putMessage(YELLOW, "Copy constructor of Bureaucrat is called", 1);
 	*this = copy;
