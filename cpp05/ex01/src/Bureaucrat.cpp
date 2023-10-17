@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 
 int Bureaucrat::ms__amount = 1;
 void	putMessage(const char* color, const std::string& message, int newline);
@@ -20,6 +21,7 @@ Bureaucrat::Bureaucrat(void) :
 	m__grade(ms__amount % 151)
 {
 	ms__amount++;
+	ms__amount %= 151;
 	putMessage(YELLOW, "Default constructor of Bureaucrat is called", 1);
 }
 Bureaucrat::~Bureaucrat(void)
@@ -65,7 +67,7 @@ int const & Bureaucrat::getGrade(void) const
 std::ostream &operator<<(std::ostream &outs, Bureaucrat const &bureau)
 {
 	outs << "Name: " BLUE << bureau.getName() << DEFCOLOR ", Grade: " GREEN << bureau.getGrade() << DEFCOLOR;
-    return outs;
+	return outs;
 }
 
 void	Bureaucrat::increaseGrade(int amount)
@@ -80,6 +82,16 @@ void	Bureaucrat::decreaseGrade(int amount)
 	if (this->m__grade + amount > 150)
 		throw GradeTooLowException();
 	m__grade += amount;
+}
+
+void Bureaucrat::signForm(Form &toSign) const
+{
+	try {
+		toSign.beSigned(this->getGrade());
+		std::cout << getName() << " signed " << toSign.getName() << std::endl;
+	} catch (Form::GradeTooLowException &e) {
+		std::cout << getName() << " couldn't sign " << toSign.getName() << " because " << e.what() << std::endl;
+	}
 }
 
 const char*	Bureaucrat::GradeTooHighException::what() const throw()
