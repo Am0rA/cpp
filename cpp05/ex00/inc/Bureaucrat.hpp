@@ -16,25 +16,25 @@
 # include "main.hpp"
 # include <string>
 # include <sstream>
+# include <exception>
 
 class Bureaucrat
 {
 	private:
-		std::string	m__name;
-		int			m__grade;
-		static int	ms__amount;
+		std::string const	__name;
+		int					__grade;
 	public:
 		// Form
 		Bureaucrat(void);
-		~Bureaucrat(void);
+		virtual ~Bureaucrat(void);
 		Bureaucrat(Bureaucrat const & copy);
 		Bureaucrat& operator=(Bureaucrat const & assign);
 		// Subject
 		Bureaucrat(std::string const &name, int const &grade);
 		std::string const & getName(void) const;
 		int const & getGrade(void) const;
-		void increaseGrade(int amount);
-		void decreaseGrade(int amount);
+		void increaseGrade();
+		void decreaseGrade();
 		// Exceptions
 		class GradeTooLowException : public std::exception
 		{
@@ -46,9 +46,7 @@ class Bureaucrat
 			public:
 				virtual const char	*what() const throw();
 		};
+	friend std::ostream &operator<<(std::ostream &outs, Bureaucrat const &bureau);
 };
-
-//Subject
-std::ostream &operator<<(std::ostream &outs, Bureaucrat const &bureau);
 
 #endif
