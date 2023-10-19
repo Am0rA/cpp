@@ -30,7 +30,7 @@ int	main(void)
 			Form lesh("lesh", 42, 120);
 			std::cout << coni << std::endl;
 			std::cout << lesh << std::endl;
-			lesh.beSigned(coni);
+			coni.signForm(lesh);
 			std::cout << lesh << std::endl;
 		}
 		catch (std::exception& e)
@@ -47,7 +47,7 @@ int	main(void)
 			Form lesh("lesh", 2, 120);
 			std::cout << coni << std::endl;
 			std::cout << lesh << std::endl;
-			lesh.beSigned(coni);
+			coni.signForm(lesh);
 			std::cout << lesh << std::endl;
 		}
 		catch(const std::exception& e)
