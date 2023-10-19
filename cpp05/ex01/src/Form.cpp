@@ -5,91 +5,101 @@
 /*                                                     +:+                    */
 /*   By: itopchu <itopchu@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2023/10/15 17:13:16 by itopchu       #+#    #+#                 */
-/*   Updated: 2023/10/15 17:13:16 by itopchu       ########   odam.nl         */
+/*   Created: 2023/10/18 19:41:00 by itopchu       #+#    #+#                 */
+/*   Updated: 2023/10/18 19:41:00 by itopchu       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Form.hpp"
 
 Form::Form(void) :
-	mc__name("DEFAULT"),
-	mc__recuiredGrade(150),
-	mc__executeGrade(150),
-	m__sign(false)
+	__name("Default"),
+	__recuiredGrade(42),
+	__executeGrade(42),
+	__sign(false)
 {
-	putMessage(YELLOW, "Default constructor of Form is called", 1);
+	putMessage(C_YELLOW, "Default constructor of Form is called", 1);
 }
 
 Form::~Form(void)
 {
-	putMessage(PURP, "Default destructor of Form is called", 1);
+	putMessage(C_PURPLE, "Destructor of Form is called", 1);
 }
 
-Form::Form(Form const & copy) :
-	mc__name(copy.getName()),
-	mc__recuiredGrade(copy.getRecuired()),
-	mc__executeGrade(copy.getExecute())
+Form::Form(const Form& copy) :
+	__name(copy.getName()),
+	__recuiredGrade(copy.getRecuired()),
+	__executeGrade(copy.getExecute()),
+	__sign(copy.getSign())
 {
-	putMessage(YELLOW, "Copy constructor of Form is called", 1);
-	this->m__sign = copy.getSign();
-	*this = copy;
+	putMessage(C_YELLOW, "Copy constructor of Form is called", 1);
 }
 
-Form& Form::operator=(Form const & assign)
+Form& Form::operator=(const Form& assign)
 {
-	std::cout << RED "Only non-const values assigned" DEFCOLOR << std::endl;
-	this->m__sign = assign.m__sign;
+	const_cast<std::string &>(__name) = assign.getName();
+	const_cast<int &>(__executeGrade) = assign.getExecute();
+	const_cast<int &>(__recuiredGrade) = assign.getRecuired();
+	this->__sign = assign.getSign();
 	return (*this);
 }
 
-Form::Form(std::string const &name, int recuired, int execute) :
-	mc__name(name),
-	mc__recuiredGrade(recuired),
-	mc__executeGrade(execute)
+Form::Form(std::string const & name, int recuiredGrade, int executeGrade) :
+	__name(name),
+	__recuiredGrade(recuiredGrade),
+	__executeGrade(executeGrade),
+	__sign(false)
 {
-	putMessage(YELLOW, "Name constructor of Form is called", 1);
-	if (recuired < 1 || execute < 1)
-		throw(GradeTooHighException());
-	else if (recuired > 150 || execute > 150)
-		throw(GradeTooLowException());
-	m__sign = false;
+	putMessage(C_YELLOW, "Name constructor of Form is called", 1);
+	if (recuiredGrade < 1 || executeGrade < 1)
+		throw (GradeTooHighException());
+	if (recuiredGrade > 150 || executeGrade > 150)
+		throw (GradeTooLowException());
 }
 
-std::string const	&Form::getName(void) const
+void	Form::beSigned(const Bureaucrat& bureaucrat)
 {
-	return (mc__name);
+	if (bureaucrat.getGrade() > getRecuired())
+		throw (GradeTooLowException());
+	this->__sign = true;
 }
 
-bool const	&Form::getSign(void) const
+std::string const & Form::getName(void) const
 {
-	return (m__sign);
+	return (this->__name);
 }
 
-int const	&Form::getRecuired(void) const
+bool const &	Form::getSign(void) const
 {
-	return (mc__recuiredGrade);
+	return (this->__sign);
 }
 
-int const	&Form::getExecute(void) const
+int const &		Form::getRecuired(void) const
 {
-	return (mc__executeGrade);
+	return (this->__recuiredGrade);
 }
 
-void	Form::beSigned(const int &ref)
+int const &		Form::getExecute(void) const
 {
-	if (ref >= this->mc__recuiredGrade)
-		GradeTooLowException();
-	this->m__sign = true;
+	return (this->__executeGrade);
 }
 
-std::ostream &operator<<(std::ostream &outs, Form const &form)
+const char*	Form::GradeTooLowException::what() const throw()
 {
-    outs << "Form: " << form.getName() << ", Grade required to sign: " << form.getRecuired()
-       << ", Grade required to execute: " << form.getExecute() << ", Signed: ";
-    if (form.getSign())
-        outs << "Yes";
-    else
-        outs << "No";
-    return outs;
+	return ("Grades can't be lower than 150.");
+}
+
+const char*	Form::GradeTooHighException::what() const throw()
+{
+	return ("Grades can't be higher than 1.");
+}
+
+std::ostream & operator<<(std::ostream &o, Form const &obj)
+{
+	o << "Form name: " C_BLUE << obj.getName() << C_RESET << std::endl \
+	<< "Is signed: "; 
+	obj.getSign() ? o << C_GREEN "True" C_RESET : o << C_RED "False" C_RESET;
+	o << std::endl << "Grade to sign: " C_BLUE << obj.getRecuired() << std::endl \
+	<< C_RESET "Grade to execute: " C_BLUE << obj.getExecute() << C_RESET << std::endl;
+	return o;
 }

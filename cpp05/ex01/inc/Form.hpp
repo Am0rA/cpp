@@ -5,52 +5,50 @@
 /*                                                     +:+                    */
 /*   By: itopchu <itopchu@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2023/10/15 03:25:35 by itopchu       #+#    #+#                 */
-/*   Updated: 2023/10/15 03:25:35 by itopchu       ########   odam.nl         */
+/*   Created: 2023/10/18 19:41:04 by itopchu       #+#    #+#                 */
+/*   Updated: 2023/10/18 19:41:04 by itopchu       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FORM_HPP
 # define FORM_HPP
-# include "Bureaucrat.hpp"
+
+# include <iostream>
 # include <string>
-# include <sstream>
-# include <stdbool.h>
+# include <exception>
+# include "Bureaucrat.hpp"
+
+class Bureaucrat;
 
 class Form
 {
 	private:
-		const std::string	mc__name;
-		const int			mc__recuiredGrade;
-		const int			mc__executeGrade;
-		bool				m__sign;
+		std::string const	__name;
+		int const			__recuiredGrade;
+		int const			__executeGrade;
+		bool				__sign;
 	public:
 		// Form
 		Form(void);
-		~Form(void);
-		Form(Form const & copy);
-		Form& operator=(Form const & assign);
+		virtual ~Form(void);
+		Form(const Form& copy);
+		Form& operator=(const Form& assign);
 		// Subject
-		Form(std::string const &name, int recuired, int execute);
-		void	beSigned(const int &ref);
-		std::string const	&getName(void) const;
-		bool const			&getSign(void) const;
-		int const			&getRecuired(void) const;
-		int const			&getExecute(void) const;
-		// Exceptions
-		class GradeTooHighException : public std::exception {
-			public:
-				virtual const char* what() const throw() {
-					return "Grade is too high for the form.";
-				}
-		};
-		class GradeTooLowException : public std::exception {
-			public:
-				virtual const char* what() const throw() {
-					return "Grade is too low for the form.";
-				}
-		};
-		friend std::ostream &operator<<(std::ostream &outs, Form const &form);
+		Form(std::string const & name, int recuiredGrade, int executeGrade);
+		void				beSigned(const Bureaucrat& bureaucrat);
+		std::string const &	getName(void) const;
+		bool const &		getSign(void) const;
+		int const &			getRecuired(void) const;
+		int const &			getExecute(void) const;
+	class	GradeTooHighException : public std::exception {
+		public:
+			virtual const char* what() const throw();
+	};
+	class	GradeTooLowException : public std::exception {
+		public:
+			virtual const char* what() const throw();
+	};
+	friend std::ostream & operator<<(std::ostream &o, Form const &ref);
 };
 
 #endif

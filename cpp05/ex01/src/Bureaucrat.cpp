@@ -11,87 +11,86 @@
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
-#include "Form.hpp"
 
-int Bureaucrat::ms__amount = 1;
 void	putMessage(const char* color, const std::string& message, int newline);
 
 Bureaucrat::Bureaucrat(void) :
-	m__name("DEFAULT:" + ms__amount),
-	m__grade(ms__amount % 151)
+	__name("DEFAULT"),
+	__grade(42)
 {
-	ms__amount++;
-	ms__amount %= 151;
-	putMessage(YELLOW, "Default constructor of Bureaucrat is called", 1);
+	putMessage(C_YELLOW, "Default constructor of Bureaucrat is called", 1);
 }
+
 Bureaucrat::~Bureaucrat(void)
 {
-	putMessage(PURP, "Default destructor of Bureaucrat is called", 1);
+	putMessage(C_PURPLE, "Destructor of Bureaucrat is called", 1);
 }
-Bureaucrat::Bureaucrat(Bureaucrat const & copy)
+
+Bureaucrat::Bureaucrat(Bureaucrat const & copy) :
+	__name(copy.getName()),
+	__grade(copy.getGrade())
 {
-	putMessage(YELLOW, "Copy constructor of Bureaucrat is called", 1);
+	putMessage(C_YELLOW, "Copy constructor of Bureaucrat is called", 1);
 	*this = copy;
 }
 
 Bureaucrat& Bureaucrat::operator=(Bureaucrat const & assign)
 {
-	this->m__grade = assign.getGrade();
-	this->m__name = assign.getName();
-	// this->ms__amount = assign.ms__amount;
+	putMessage(C_YELLOW, "Copy assignment operator of Bureaucrat is called", 1);
+	this->__grade = assign.getGrade();
+	const_cast<std::string &>(__name) = assign.getName();
 	return *this;
 }
 
 Bureaucrat::Bureaucrat(std::string const &name, int const &grade) :
-	m__name(name),
-	m__grade(grade)
+	__name(name),
+	__grade(grade)
 {
-	if (m__grade < 1)
+	putMessage(C_YELLOW, "Name constructor of Bureaucrat is called", 1);
+	if (__grade < 1)
 		throw GradeTooHighException();
-	if (m__grade > 150)
+	if (__grade > 150)
 		throw GradeTooLowException();
-	putMessage(YELLOW, "Name constructor of Bureaucrat is called", 1);
-	ms__amount++;
 }
 
 std::string const & Bureaucrat::getName(void) const
 {
-	return(this->m__name);
+	return(this->__name);
 }
 
 int const & Bureaucrat::getGrade(void) const
 {
-	return (this->m__grade);
+	return (this->__grade);
 }
 
-std::ostream &operator<<(std::ostream &outs, Bureaucrat const &bureau)
+void	Bureaucrat::increaseGrade()
 {
-	outs << "Name: " BLUE << bureau.getName() << DEFCOLOR ", Grade: " GREEN << bureau.getGrade() << DEFCOLOR;
-	return outs;
+	if (this->__grade == 1)
+		throw (GradeTooHighException());
+	this->__grade--;
+	std::cout << "Bureaucrat grade increased to " C_BLUE << getGrade() << std::endl;
 }
 
-void	Bureaucrat::increaseGrade(int amount)
+void	Bureaucrat::decreaseGrade()
 {
-	if (this->m__grade - amount < 1)
-		throw GradeTooHighException();
-	m__grade -= amount;
+	if (this->__grade == 150)
+		throw (GradeTooLowException());
+	__grade++;
+	std::cout << "Bureaucrat grade decreased to " C_RED << getGrade() << std::endl;
 }
 
-void	Bureaucrat::decreaseGrade(int amount)
+void	Bureaucrat::signForm(Form& form)
 {
-	if (this->m__grade + amount > 150)
-		throw GradeTooLowException();
-	m__grade += amount;
-}
-
-void Bureaucrat::signForm(Form &toSign) const
-{
-	try {
-		toSign.beSigned(this->getGrade());
-		std::cout << getName() << " signed " << toSign.getName() << std::endl;
-	} catch (Form::GradeTooLowException &e) {
-		std::cout << getName() << " couldn't sign " << toSign.getName() << " because " << e.what() << std::endl;
+	try
+	{
+		form.beSigned(*this);
+		std::cout << C_BLUE << __name << C_GREEN " signed " C_CYAN << form.getName() << C_RESET << std::endl;
 	}
+	catch(const std::exception& e)
+	{
+        std::cout << C_BLUE << __name << C_RED " couldn't sign " C_CYAN << form.getName() << C_RESET " because " << e.what() << std::endl;
+	}
+	
 }
 
 const char*	Bureaucrat::GradeTooHighException::what() const throw()
@@ -102,4 +101,11 @@ const char*	Bureaucrat::GradeTooHighException::what() const throw()
 const char*	Bureaucrat::GradeTooLowException::what() const throw()
 {
 	return "Grades can't be lower than 150.";
+}
+
+std::ostream &operator<<(std::ostream &outs, Bureaucrat const &bureau)
+{
+	outs << "Name: " C_BLUE << bureau.getName() << C_RESET \
+	", Grade: " C_GREEN << bureau.getGrade() << C_RESET;
+    return outs;
 }

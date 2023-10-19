@@ -10,35 +10,110 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "Bureaucrat.hpp"
 #include "Form.hpp"
 
 void	putMessage(const char* color, const std::string& message, int newline)
 {
-	std::cout << color << message << DEFCOLOR;
+	std::cout << color << message << C_RESET;
 	if (newline)
 		std::cout << std::endl;
 }
 
 int	main(void)
 {
-    try {
-        Bureaucrat bureaucrat1("John", 10);
-        Bureaucrat bureaucrat2("Alice", 100);
-
-        Form form1("Tax Return", 20, 30);
-        Form form2("License Renewal", 5, 15);
-
-        std::cout << bureaucrat1 << std::endl;
-        std::cout << bureaucrat2 << std::endl;
-        std::cout << form1 << std::endl;
-        std::cout << form2 << std::endl;
-
-        bureaucrat1.signForm(form1);
-        bureaucrat2.signForm(form2);
-    } catch (Form::GradeTooHighException &e) {
-        std::cerr << "Error: " << e.what() << std::endl;
-    } catch (Form::GradeTooLowException &e) {
-        std::cerr << "Error: " << e.what() << std::endl;
-    }
-    return 0;
+	{
+		try
+		{
+			putMessage(C_CYAN, "[TEST 1] : Valid higher sign", 1);
+			Bureaucrat coni("Coni", 2);
+			Form lesh("lesh", 42, 120);
+			std::cout << coni << std::endl;
+			std::cout << lesh << std::endl;
+			lesh.beSigned(coni);
+			std::cout << lesh << std::endl;
+		}
+		catch (std::exception& e)
+		{
+			std::cerr << e.what() << std::endl;
+		}
+	}
+	std::cout << std::endl;
+	{
+		try
+		{
+			putMessage(C_CYAN, "[TEST 2] : Valid equal sign", 1);
+			Bureaucrat coni("Coni", 2);
+			Form lesh("lesh", 2, 120);
+			std::cout << coni << std::endl;
+			std::cout << lesh << std::endl;
+			lesh.beSigned(coni);
+			std::cout << lesh << std::endl;
+		}
+		catch(const std::exception& e)
+		{
+			std::cerr << e.what() << std::endl;
+		}		
+	}
+	std::cout << std::endl;
+	{
+		try
+		{
+			putMessage(C_CYAN, "[TEST 3] : Invalid lowergrade", 1);
+			Bureaucrat coni("Coni", 11);
+			Form lesh("Lesh", 10, 120);
+			std::cout << coni << std::endl;
+			std::cout << lesh << std::endl;
+			coni.signForm(lesh);
+			std::cout << lesh << std::endl;
+		}
+		catch(const std::exception& e)
+		{
+			std::cerr << e.what() << std::endl;
+		}		
+	}
+	std::cout << std::endl;
+	{
+		try
+		{
+			putMessage(C_CYAN, "[TEST 4] : Invalid higher", 1);
+			Bureaucrat coni("Coni", 11);
+			Form lesh("Lesh", 12, 12);
+			std::cout << coni << std::endl;
+			std::cout << lesh << std::endl;
+			coni.signForm(lesh);
+			std::cout << lesh << std::endl;
+		}
+		catch(const std::exception& e)
+		{
+			std::cerr << e.what() << std::endl;
+		}		
+	}
+	std::cout << std::endl;
+	{
+		try
+		{
+			putMessage(C_CYAN, "[TEST 5] : Invalid Construct", 1);
+			Bureaucrat coni("Coni", 0);
+			std::cout << coni << std::endl;
+		}
+		catch(const std::exception& e)
+		{
+			std::cerr << e.what() << std::endl;
+		}		
+	}
+	std::cout << std::endl;
+	{
+		try
+		{
+			putMessage(C_CYAN, "[TEST 6] : Invalid Construct", 1);
+			Form lesh("Lesh", 0, 0);
+			std::cout << lesh << std::endl;
+		}
+		catch(const std::exception& e)
+		{
+			std::cerr << e.what() << std::endl;
+		}		
+	}
+	return (0);
 }
