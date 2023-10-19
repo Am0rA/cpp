@@ -23,53 +23,41 @@ void	putMessage(const char* color, const std::string& message, int newline)
 		std::cout << std::endl;
 }
 
-int main( void ) {
-	std::cout << std::boolalpha;
+int main(void)
+{
 	{
-		std::cout << C_YELLOW << "[ TEST ] : ShrubberyCreationForm" << C_RESET << std::endl;
-		std::cout << std::endl;
-		std::cout << C_RED << "Bureaucrat1 can sign & execute the form." << C_RESET << std::endl;
-		ShrubberyCreationForm sf1("test1");
+		std::cout << C_GREEN << "----------------------[TEST1] : ShrubberyCreationForm----------------------" << C_RESET << std::endl;
+		ShrubberyCreationForm shruberry1("test1");
 		try {
-			Bureaucrat b("Bureaucrat1", 10);
-			std::cout << b << std::endl;
-			std::cout << std::endl;
-			b.signForm(sf1);
-			std::cout << std::endl;
-			std::cout << sf1 << std::endl;
-			b.executeForm(sf1);
+			Bureaucrat coni("Coni", 10);
+			std::cout << coni << std::endl;
+			coni.signForm(shruberry1);
+			std::cout << shruberry1 << std::endl;
+			coni.executeForm(shruberry1);
 		}
 		catch (std::exception &e) {
 			std::cerr << e.what() << std::endl;
 		}
 		std::cout << std::endl;
-
-		std::cout << C_RED << "Bureaucrat2 can sign but not execute the form." << C_RESET << std::endl;
-		ShrubberyCreationForm sf2("test2");
+		ShrubberyCreationForm shruberry2("test2");
 		try {
-			Bureaucrat b("Bureaucrat2", 145);
-			std::cout << b << std::endl;
-			std::cout << std::endl;
-			b.signForm(sf2);
-			std::cout << std::endl;
-			std::cout << sf2 << std::endl;
-			b.executeForm(sf2);
+			Bureaucrat coni("coni", 145);
+			std::cout << coni << std::endl;
+			coni.signForm(shruberry2);
+			std::cout << shruberry2 << std::endl;
+			coni.executeForm(shruberry2);
 		}
 		catch (std::exception &e) {
 			std::cerr << e.what() << std::endl;
 		}
 		std::cout << std::endl;
-
-		std::cout << C_RED << "Bureaucrat3 can not sign & execute the form." << C_RESET << std::endl;
-		ShrubberyCreationForm sf3("test3");
+		ShrubberyCreationForm shruberry3("test3");
 		try {
-			Bureaucrat b("Bureaucrat3", 150);
-			std::cout << b << std::endl;
-			std::cout << std::endl;
-			b.signForm(sf3);
-			std::cout << std::endl;
-			std::cout << sf3 << std::endl;
-			b.executeForm(sf3);
+			Bureaucrat coni("Coni", 150);
+			std::cout << coni << std::endl;
+			coni.signForm(shruberry3);
+			std::cout << shruberry3 << std::endl;
+			coni.executeForm(shruberry3);
 		}
 		catch (std::exception &e) {
 			std::cerr << e.what() << std::endl;
@@ -77,50 +65,38 @@ int main( void ) {
 		std::cout << std::endl;
 	}
 	{
-		std::cout << C_YELLOW << "[ TEST ] : RobotomyRequestForm" << C_RESET << std::endl;
-		std::cout << std::endl;
-		std::cout << C_RED << "Bureaucrat1 can sign & execute the form." << C_RESET << std::endl;
+		std::cout << C_GREEN << "----------------------[TEST2] : RobotomyRequestForm----------------------" << C_RESET << std::endl;
 		RobotomyRequestForm rf1("test1");
 		try {
-			Bureaucrat b("Bureaucrat1", 10);
-			std::cout << b << std::endl;
-			std::cout << std::endl;
-			b.signForm(rf1);
-			std::cout << std::endl;
+			Bureaucrat coni("Coni", 10);
+			std::cout << coni << std::endl;
+			coni.signForm(rf1);
 			std::cout << rf1 << std::endl;
-			b.executeForm(rf1);
+			coni.executeForm(rf1);
 		}
 		catch (std::exception &e) {
 			std::cerr << e.what() << std::endl;
 		}
 		std::cout << std::endl;
-
-		std::cout << C_RED << "Bureaucrat2 can sign but not execute the form." << C_RESET << std::endl;
-		RobotomyRequestForm rf2("test2");
+		RobotomyRequestForm robotomy("test2");
 		try {
-			Bureaucrat b("Bureaucrat2", 50);
-			std::cout << b << std::endl;
-			std::cout << std::endl;
-			b.signForm(rf2);
-			std::cout << std::endl;
-			std::cout << rf2 << std::endl;
-			b.executeForm(rf2);
+			Bureaucrat coni("coni", 50);
+			std::cout << coni << std::endl;
+			coni.signForm(robotomy);
+			std::cout << robotomy << std::endl;
+			coni.executeForm(robotomy);
 		}
 		catch (std::exception &e) {
 			std::cerr << e.what() << std::endl;
 		}
 		std::cout << std::endl;
-
-		std::cout << C_RED << "Bureaucrat3 can not sign & execute the form." << C_RESET << std::endl;
 		RobotomyRequestForm rf3("test3");
 		try {
-			Bureaucrat b("Bureaucrat3", 100);
-			std::cout << b << std::endl;
-			std::cout << std::endl;
-			b.signForm(rf3);
-			std::cout << std::endl;
+			Bureaucrat coni("Coni", 100);
+			std::cout << coni << std::endl;
+			coni.signForm(rf3);
 			std::cout << rf3 << std::endl;
-			b.executeForm(rf3);
+			coni.executeForm(rf3);
 		}
 		catch (std::exception &e) {
 			std::cerr << e.what() << std::endl;
@@ -128,55 +104,41 @@ int main( void ) {
 		std::cout << std::endl;
 	}
 	{
-		std::cout << C_YELLOW << "[ TEST ] : PresidentialPardonForm" << C_RESET << std::endl;
-		std::cout << std::endl;
-		std::cout << C_RED << "Bureaucrat1 can sign & execute the form." << C_RESET << std::endl;
+		std::cout << C_GREEN << "----------------------[TEST3] : PresidentialPardonForm----------------------" << C_RESET << std::endl;
 		PresidentialPardonForm pf1("test1");
 		try {
-			Bureaucrat b("Bureaucrat1", 4);
-			std::cout << b << std::endl;
-			std::cout << std::endl;
-			b.signForm(pf1);
-			std::cout << std::endl;
+			Bureaucrat coni("Coni", 4);
+			std::cout << coni << std::endl;
+			coni.signForm(pf1);
 			std::cout << pf1 << std::endl;
-			b.executeForm(pf1);
+			coni.executeForm(pf1);
 		}
 		catch (std::exception &e) {
 			std::cerr << e.what() << std::endl;
 		}
 		std::cout << std::endl;
-
-		std::cout << C_RED << "Bureaucrat2 can sign but not execute the form." << C_RESET << std::endl;
 		PresidentialPardonForm pf2("test2");
 		try {
-			Bureaucrat b("Bureaucrat2", 20);
-			std::cout << b << std::endl;
-			std::cout << std::endl;
-			b.signForm(pf2);
-			std::cout << std::endl;
+			Bureaucrat coni("coni", 20);
+			std::cout << coni << std::endl;
+			coni.signForm(pf2);
 			std::cout << pf2 << std::endl;
-			b.executeForm(pf2);
+			coni.executeForm(pf2);
 		}
 		catch (std::exception &e) {
 			std::cerr << e.what() << std::endl;
 		}
 		std::cout << std::endl;
-
-		std::cout << C_RED << "Bureaucrat3 can not sign & execute the form." << C_RESET << std::endl;
 		PresidentialPardonForm pf3("test3");
 		try {
-			Bureaucrat b("Bureaucrat3", 100);
-			std::cout << b << std::endl;
-			std::cout << std::endl;
-			b.signForm(pf3);
-			std::cout << std::endl;
+			Bureaucrat coni("Coni", 100);
+			std::cout << coni << std::endl;
+			coni.signForm(pf3);
 			std::cout << pf3 << std::endl;
-			b.executeForm(pf3);
+			coni.executeForm(pf3);
 		}
 		catch (std::exception &e) {
 			std::cerr << e.what() << std::endl;
 		}
-		std::cout << std::endl;
 	}
-	// while(42){};
 }

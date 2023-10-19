@@ -121,6 +121,6 @@ std::ostream & operator<<(std::ostream &o, AForm const &obj)
 	<< "Is signed: "; 
 	obj.getSign() ? o << C_GREEN "True" C_RESET : o << C_RED "False" C_RESET;
 	o << std::endl << "Grade to sign: " C_BLUE << obj.getRecuired() << std::endl \
-	<< C_RESET "Grade to execute: " C_BLUE << obj.getExecute() << C_RESET << std::endl;
+	<< C_RESET "Grade to execute: " C_BLUE << obj.getExecute() << C_RESET;
 	return o;
 }
