@@ -18,8 +18,8 @@ CPPFLAGS	+= -MMD -MP
 LFLAGS		:= -L$(DIR_INC)
 RM			= rm -rf
 # **************************************************************************** #
-SRC_EXEC	= $(DIR_SRC)/main.cpp \
-			  $(DIR_SRC)/ScalarConverter.cpp
+SRC_EXEC	= $(DIR_SRC)/ScalarConverter.cpp \
+			  $(DIR_SRC)/main.cpp
 # **************************************************************************** #
 SRCS		= $(SRC_EXEC)
 OBJS		= $(SRCS:$(DIR_SRC)/%.cpp=$(DIR_OBJ)/%.o)

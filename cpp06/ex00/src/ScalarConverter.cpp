@@ -12,13 +12,20 @@
 
 #include "ScalarConverter.hpp"
 
+int ScalarConverter::__type = 0;
+std::string ScalarConverter::__input;
+int ScalarConverter::__int = 0;
+float ScalarConverter::__float = 0.0f;
+char ScalarConverter::__char = '\0';
+double ScalarConverter::__double = 0.0;
+
 void ScalarConverter::putDouble(void)
 {
 	if (ScalarConverter::__type != NAN_INF)
 	{
 		std::cout << "double: " << ScalarConverter::__double;
-		if (ScalarConverter::__double < std::numeric_limits<int>::min() ||
-			ScalarConverter::__double > std::numeric_limits<int>::max() ||
+		if (ScalarConverter::__double > std::numeric_limits<int>::min() ||
+			ScalarConverter::__double < std::numeric_limits<int>::max() ||
 			(std::fmod(ScalarConverter::__double, 1.0)))
 		{
 			std::cout << ".0" << std::endl;
@@ -43,9 +50,9 @@ void ScalarConverter::putFloat(void)
 	{
 		std::cout << "float: " << ScalarConverter::__double;
 		if (std::fmod(ScalarConverter::__float, 1.0f))
-			std::cout << ".0f" << std::endl;
-		else
 			std::cout << "f" << std::endl;
+		else
+			std::cout << ".0f" << std::endl;
 	}
 	else
 	{
@@ -108,7 +115,7 @@ void ScalarConverter::fillValues(void)
 			ScalarConverter::__char = static_cast<unsigned char>(ScalarConverter::__double);
 			break;
 		case CHAR:
-			ScalarConverter::__char = static_cast<unsigned char>(ScalarConverter::__input.back());
+			ScalarConverter::__char = static_cast<unsigned char>(ScalarConverter::__input[ScalarConverter::__input.size() - 1]);
 			ScalarConverter::__int = static_cast<int>(ScalarConverter::__char);
 			ScalarConverter::__float = static_cast<float>(ScalarConverter::__char);
 			ScalarConverter::__double = static_cast<double>(ScalarConverter::__char);
@@ -128,7 +135,7 @@ void ScalarConverter::findType(void)
 	{
 		ScalarConverter::__type = NAN_INF;
 	}
-	else if (tmp->length() == 1 && !((char)tmp->c_str() >= '0' && (char)tmp->c_str() <= '9'))
+	else if (tmp->length() == 1 && !(tmp->c_str()[0] >= '0' && tmp->c_str()[0] <= '9'))
 	{
 		ScalarConverter::__type = CHAR;
 	}
@@ -142,7 +149,9 @@ void ScalarConverter::findType(void)
 	}
 	else if (tmp->find_first_not_of("+-0123456789.") == std::string::npos)
 	{
-		if (tmp->find_first_of(".") != tmp->find_last_of("."))
+		if (tmp->find_first_of(".") != tmp->find_last_of(".") ||
+			tmp->find_first_of(".") == 0 ||
+			tmp->find_first_of(".") == tmp->length() - 1)
 			ScalarConverter::__type = ERROR;
 		else
 			ScalarConverter::__type = DOUBLE;
@@ -151,8 +160,9 @@ void ScalarConverter::findType(void)
 	{
 		if (tmp->find_first_of("f") != tmp->find_last_of("f") ||
 			tmp->find_first_of(".") != tmp->find_last_of(".") ||
-			tmp->back() != 'f' ||
-			!std::isdigit(tmp->c_str()[tmp->find_first_of("f") - 1]))
+			ScalarConverter::__input[tmp->size() - 1] != 'f' ||
+			!std::isdigit(tmp->c_str()[tmp->find_first_of("f") - 1]) ||
+			tmp->find_first_of(".") == 0)
 			ScalarConverter::__type = ERROR;
 		else
 			ScalarConverter::__type = FLOAT;
@@ -161,6 +171,7 @@ void ScalarConverter::findType(void)
 	{
 		ScalarConverter::__type = ERROR;
 	}
+	std::cout << ScalarConverter::__type << std::endl;
 }
 
 void ScalarConverter::convert(const std::string& input)
