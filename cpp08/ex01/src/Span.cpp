@@ -12,17 +12,9 @@
 
 #include "Span.hpp"
 
-Span::Span(void) :
-	__maxSize(1)
-{
-	__data.reserve(1);
-}
+Span::Span(void) : __maxSize(1) { }
 
-Span::Span(unsigned int n) :
-	__maxSize(n)
-{
-	__data.reserve(n);
-}
+Span::Span(unsigned int n) : __maxSize(n) { }
 
 Span::~Span(void) {}
 
@@ -47,48 +39,69 @@ void	Span::addNumber(int val)
 {
 	if (__data.size() >= __maxSize)
 		throw NoSpaceException();
-	__data.push_back(val);
+	__data.insert(val);
 }
 
 int		Span::shortestSpan(void) const
 {
 	if (__data.size() <= 1)
 		throw NoSpanException();
-	int shortest = std::numeric_limits<int>::max();
-	for (size_t i = 0; i < __data.size(); ++i)
+
+	std::multiset<int>::const_iterator prev = __data.begin();
+	std::multiset<int>::const_iterator curr = prev;
+	curr++;
+	unsigned int minSpan = static_cast<unsigned int>(*curr) - static_cast<unsigned int>(*prev);
+	while (curr != __data.end())
 	{
-		for (size_t j = i + 1; j < __data.size(); ++j)
-		{
-			int span = std::abs(__data[j] - __data[i]);
-			if (span < shortest)
-				shortest = span;
-		}
+		unsigned int tmp = static_cast<unsigned int>(*curr) - static_cast<unsigned int>(*prev);
+		if (tmp < minSpan)
+			minSpan = tmp;
+		curr++;
+		prev++;
 	}
-	return shortest;
+	return (minSpan);
 }
 
-int		Span::longestSpan(void) const
+int Span::longestSpan(void) const
 {
 	if (__data.size() <= 1)
 		throw NoSpanException();
-	int min = *std::min_element(__data.begin(), __data.end());
-	int max = *std::max_element(__data.begin(), __data.end());
-	return (max - min);
+	return (std::abs(*__data.rbegin() - *__data.begin()));
 }
 
-void	Span::addNumbers(const std::vector<int>& container)
+void	Span::addNumbers(const std::multiset<int>& container)
 {
-	    if (__data.size() + container.size() > __maxSize)
-            throw NoSpaceException();
-        __data.insert(__data.end(), container.begin(), container.end());
+	if (__data.size() + container.size() > __maxSize)
+		throw NoSpaceException();
+	__data.insert(container.begin(), container.end());
+}
+
+void	Span::addNumbers(unsigned int size)
+{
+	if (size + __data.size() > __maxSize)
+		throw NoSpaceException();
+	if (size > 200000)
+	{
+		size = 200000;
+		std::cout << "Only 200.000 elements will be added to __data\n";
+
+	}
+    std::random_device rd;
+    std::mt19937_64  gen(rd());
+    std::uniform_int_distribution<int> distribution(std::numeric_limits<int>::min(), std::numeric_limits<int>::max());
+
+    for (unsigned int i = 0; i < size; ++i) {
+        int randomElement = static_cast<int>(distribution(gen));
+        __data.insert(randomElement);
+    }
 }
 
 const char	*Span::NoSpaceException ::what() const throw()
 {
-	return "maxSize is not big enough to do this!";
+	return "Insufficient space in the container";
 }
 
 const char	*Span::NoSpanException ::what() const throw()
 {
-	return "Container doesn't have enough elements! ";
+	return "Insufficient elements in the container";
 }

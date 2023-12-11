@@ -10,15 +10,19 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef SPAN_HPP
+# define SPAN_HPP
+
 #include <iostream>
-#include <vector>
-#include <algorithm>
 #include <limits>
+#include <set>
+#include <climits>
+#include <random>
 
 class Span
 {
 	private:
-		std::vector<int>	__data;
+		std::multiset<int>	__data;
 		unsigned int		__maxSize;
 	public:
 		Span(void);
@@ -27,7 +31,8 @@ class Span
 		Span(Span const & copy);
 		Span &operator=(Span const & assign);
 		void	addNumber(int val);
-		void	addNumbers(const std::vector<int>& container);
+		void	addNumbers(const std::multiset<int>& container);
+		void	addNumbers(unsigned int size);
 		int		shortestSpan(void) const;
 		int		longestSpan(void) const;
 	class NoSpaceException : public std::exception {
@@ -40,3 +45,5 @@ class Span
 			virtual char const *what() const throw();
 	};
 };
+
+#endif
