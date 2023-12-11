@@ -55,6 +55,14 @@ int main() {
 		int intSetValue = 300;
 		std::set<int>::iterator intSetResult = easyfind(intSet, intSetValue);
 		std::cout << "Found in std::set (integers): " << *intSetResult << std::endl;
+
+		// Test with std::vector where element is not found
+		int notFoundValue = 99;
+		std::vector<int>::iterator notFoundResult = easyfind(intVec, notFoundValue);
+		if (notFoundResult == intVec.end())
+			std::cout << "notFoundResult is end of it" << std::endl;
+		// This line should not be reached if NotFoundException is thrown
+		std::cout << "Test 4: This line should not be reached.\n";
 	} catch (const NotFoundException& e) {
 		std::cerr << "Exception: " << e.what() << std::endl;
 	}
