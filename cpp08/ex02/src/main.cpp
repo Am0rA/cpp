@@ -20,51 +20,68 @@ int main(void)
 		MutantStack<int> mstack;
 		mstack.push(5);
 		mstack.push(17);
+		std::cout << "----Top----\n";
 		std::cout << mstack.top() << std::endl;
-		// std::cout << mstack. << std::endl;
 		mstack.pop();
-		std::cout << mstack.size() << "	(size of MutantStack)" << std::endl;
+		std::cout << "----Size----\n";
+		std::cout << mstack.size() << std::endl;
 		mstack.push(3);
 		mstack.push(5);
 		mstack.push(737);
+		//[...]
 		mstack.push(0);
-		std::cout << std::endl;
 		MutantStack<int>::iterator it = mstack.begin();
-		MutantStack<int>::iterator ite = mstack.end();
 		++it;
 		--it;
-		while (it != ite)
+		std::cout << "----Iterations----" << std::endl;
+		while (it != mstack.end())
 		{
 			std::cout << *it << std::endl;
 			++it;
 		}
+		std::stack<int> s(mstack);
+
 	}
+	std::cout << "--------------ADDITIONAL TEST CASE--------------" << std::endl;
 	{
-		std::cout << "--------------ADDITIONAL TEST CASE--------------" << std::endl;
-		std::list<int> mstack;
-		// mstack.push(5);
-		// mstack.push(17);
-		mstack.push_back(5);
-		mstack.push_back(17);
-		// std::cout << mstack.top() << std::endl;
-		std::cout << mstack.back() << std::endl;
-		// mstack.pop();
-		mstack.pop_back();
-		std::cout << mstack.size() << "	(size of std::list)" << std::endl;
-		mstack.push_back(3);
-		mstack.push_back(5);
-		mstack.push_back(737);
-		mstack.push_back(0);
-		std::cout << std::endl;
-		std::list<int>::iterator it = mstack.begin();
-		std::list<int>::iterator ite = mstack.end();
+		std::cout << "----1----" << std::endl;
+		// Test an empty MutantStack
+		MutantStack<int> emptyStack;
+		std::cout << "Size of empty stack: " << emptyStack.size() << std::endl;
+		std::cout << "Iterator range: " << (emptyStack.begin() == emptyStack.end() ? "Empty" : "Not Empty") << std::endl;
+	}
+
+	{
+		std::cout << "----2----" << std::endl;
+		// Test MutantStack with one element
+		MutantStack<int> singleElementStack;
+		singleElementStack.push(42);
+		std::cout << "Size of single-element stack: " << singleElementStack.size() << std::endl;
+		std::cout << "Top of single-element stack: " << singleElementStack.top() << std::endl;
+
+		MutantStack<int>::iterator it = singleElementStack.begin();
+		std::cout << "Iterator value: " << *it << std::endl;
 		++it;
-		--it;
-		while (it != ite)
+		std::cout << "Iterator range: " << (it == singleElementStack.end() ? "Empty" : "Not Empty") << std::endl;
+	}
+
+	{
+		std::cout << "----3----" << std::endl;
+		// Test MutantStack with repeated elements
+		MutantStack<int> repeatedElementStack;
+		for (int i = 0; i < 5; ++i)
+			repeatedElementStack.push(i * 645);
+
+		std::cout << "Size of repeated-element stack: " << repeatedElementStack.size() << std::endl;
+
+		int count = 0;
+		for (MutantStack<int>::iterator it = repeatedElementStack.begin(); it != repeatedElementStack.end(); ++it)
 		{
-			std::cout << *it << std::endl;
-			++it;
+			std::cout << "Element at iterator: " << *it << std::endl;
+			++count;
 		}
+
+		std::cout << "Total elements iterated: " << count << std::endl;
 	}
 	return (0);
 }
