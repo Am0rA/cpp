@@ -38,6 +38,7 @@ class BitcoinExchange
 		const double&	getVal(void) const;
 		const std::string&	getStatus(void) const;
 		const std::tm&	getTime(void) const;
+		const std::string& getLine(void) const;
 
 		BitcoinExchange& operator=(const BitcoinExchange& assign);
 		bool operator>(BitcoinExchange const &ref) const;

@@ -57,12 +57,16 @@ void	BitcoinExchange::parseInput(char sign)
 	if (std::getline(iss, token, sign))
 	{
 		std::istringstream dateStream(token);
+		// Date conversion
 		dateStream >> std::get_time(&timeStruct, "%Y-%m-%d");
 		if (dateStream.fail())
 			status = "bad input";
 		std::getline(iss, token);
+		// case specific space deletion
 		if (token.front() == ' ')
 			token.erase(0, 1);
+		// Becuase windows and linux behaves different with line end '\r\n'
+		// Trimming the spaces at the end
 		size_t lastNonSpace = token.find_last_not_of(" \t\n\r\f\v");
 		if (lastNonSpace != std::string::npos)
 			token.erase(lastNonSpace + 1);
@@ -99,6 +103,11 @@ const double&	BitcoinExchange::getVal(void) const
 const std::tm&	BitcoinExchange::getTime(void) const
 {
 	return (timeStruct);
+}
+
+const std::string&	BitcoinExchange::getLine(void) const
+{
+	return (line);
 }
 
 bool BitcoinExchange::operator>(BitcoinExchange const &ref) const
@@ -156,6 +165,10 @@ bool BitcoinExchange::operator>=(BitcoinExchange const &ref) const
 
 std::ostream& operator<<(std::ostream& os, const BitcoinExchange& exchange)
 {
+	// std::tm's zero point is year 1900 so need to add the gap.
+	// std::tm's month is 0 based so need to add index;
+	// std::setw is used to create a space for padding
+	// std::setfill is used to fill the space with 0 
 	std::tm tmp = exchange.getTime();
     os << std::setw(4) << std::setfill('0') << tmp.tm_year + 1900
        << "-" << std::setw(2) << std::setfill('0') << tmp.tm_mon + 1

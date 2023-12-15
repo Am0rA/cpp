@@ -14,6 +14,7 @@
 
 int	getPrecision(double val)
 {
+	/*incase we have 123.0510000, need to needle from . to last not 0*/
 	std::string valStr = std::to_string(val);
 	size_t decimalPos = valStr.find('.');
 	if (decimalPos != std::string::npos)
@@ -26,8 +27,18 @@ int	getPrecision(double val)
 
 void	writeCalculation(BitcoinExchange& data, BitcoinExchange& input)
 {
+	// Just to shorten the cout line
 	double result = data.getVal() * input.getVal();
-	std::cout << input << " => " << std::fixed << std::setprecision(getPrecision(input.getVal())) << input.getVal() << " = " << std::setprecision(getPrecision(result)) << result << "\n";
+	// std::fixed makes sure 'double' is not written with scientific notation
+	// expected output: 2034-12-15 => 2.4 = 113078.232
+	// 2034-12-15 =>
+	std::cout << input << " => ";
+	// 2.4
+	std::cout << std::fixed << std::setprecision(getPrecision(input.getVal())) << input.getVal();
+	// =
+	std::cout << " = ";
+	// 113078.232
+	std::cout << std::setprecision(getPrecision(result)) << result << "\n";
 }
 
 void	convertInput(std::list<BitcoinExchange>& data, std::list<BitcoinExchange>& input)
@@ -35,16 +46,20 @@ void	convertInput(std::list<BitcoinExchange>& data, std::list<BitcoinExchange>& 
 	std::_List_iterator<BitcoinExchange>	tmp;
 	for (auto node : input)
 	{
+		// checks if the line is already corrupted
 		if (node.getStatus().empty())
 		{
 			tmp = data.begin();
 			for (auto it = data.begin(); it != data.end(); ++it)
 			{
-				if (*it <= node && *tmp < *it)
+				/* It is not higher than reuqired
+				Our needle is not lower than current*/
+				if (*it <= node && *tmp <= *it)
 					tmp = it;
 			}
+			// In case node is lower than whole data base
 			if (*tmp > node)
-				std::cout << "Error: No valid lower or equal data found\n";
+				std::cout << "Error: No valid data => " + node.getLine();
 			else
 				writeCalculation(*tmp, node);
 		}
@@ -82,7 +97,8 @@ int	main(int ac, char **av)
 		// Discard faulty data lines
 		if (tmp.getStatus().empty())
 		{
-			// Sort data dates
+			// Sort data dates.
+			// std::multimap would do it better but saving some containers for merge sort
 			std::list<BitcoinExchange>::iterator it = data.begin();
 			while (it != data.end())
 			{
@@ -90,6 +106,7 @@ int	main(int ac, char **av)
 					break ;
 				it++;
 			}
+			// Adds right before the iterator
 			data.insert(it, tmp);
 		}
 		else
@@ -114,6 +131,7 @@ int	main(int ac, char **av)
 		return (1);
 	}
 	// Reading input file into 'List input'
+	// Order of input lines are important to compare the output
 	while (std::getline(inputFile, line))
 	{
 		BitcoinExchange tmp(line, '|');
